@@ -3,36 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ashish Kumar - Portfolio</title>
+    <title>Ashish Kumar - Senior Software Engineer</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+    <!-- WebGL Background Canvas -->
+    <canvas id="bgCanvas"></canvas>
+    
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="#home">AK</a>
+                <a href="#home"><i class="fas fa-home"></i></a>
             </div>
             <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#education" class="nav-link">Education</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#experience" class="nav-link">Experience</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#skills" class="nav-link">Skills</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#projects" class="nav-link">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#achievements" class="nav-link">Achievements</a>
-                </li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+                <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                <li class="nav-item"><a href="#achievements" class="nav-link">Achievements</a></li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -45,8 +34,16 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">Ashish Kumar</h1>
-            <p class="hero-subtitle">Senior Software Engineer</p>
+            <div class="hero-text">
+                <h1 class="hero-title">Ashish Kumar</h1>
+                <p class="hero-subtitle">Senior Software Engineer</p>
+                <div class="hero-description">
+                    Backend specialist with 5+ years crafting robust solutions
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
         </div>
     </section>
 
@@ -56,22 +53,8 @@
             <h2 class="section-title">About</h2>
             <div class="about-content">
                 <p class="about-text">
-                    Skilled backend software engineer with 3.5 years of hands-on experience in developing robust solutions and optimizing system performance. Proficient in a variety of backend technologies, adept at problem-solving, and committed to delivering high-quality results. Strong collaborator in cross-functional teams, contributing to efficient project execution and successful product launches. Passionate about staying updated with the latest industry trends and continuously enhancing skills. Dedicated to driving innovation and excellence in software engineering practices.
+                    Skilled backend software engineer with 5 years of hands-on experience in developing robust solutions and optimizing system performance. Proficient in a variety of backend technologies, adept at problem-solving, and committed to delivering high-quality results. Strong collaborator in cross-functional teams, contributing to efficient project execution and successful product launches.
                 </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="section">
-        <div class="container">
-            <h2 class="section-title">Education</h2>
-            <div class="education-item">
-                <div class="education-header">
-                    <h3>Bachelor's Degree</h3>
-                    <span class="education-gpa">GPA: 3.45/4.0</span>
-                </div>
-                <p class="education-school">NIT WARANGAL</p>
             </div>
         </div>
     </section>
@@ -79,48 +62,46 @@
     <!-- Experience Section -->
     <section id="experience" class="section">
         <div class="container">
-            <h2 class="section-title">Work Experience</h2>
-            
-            <div class="experience-item">
-                <div class="experience-header">
-                    <h3>SDE II L2</h3>
-                    <span class="experience-company">Highspot</span>
-                    <span class="experience-date">Dec 2023 - Present</span>
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>SDE II L2</h3>
+                        <span class="company">Highspot</span>
+                        <span class="duration">Dec 2023 - Present</span>
+                        <ul>
+                            <li>Enhanced windows file processing by 25%, overall throughput improved by 40%</li>
+                            <li>Increased unit test coverage from 24% to 88%</li>
+                            <li>Implemented CHIPS solution for third party cookies depreciation</li>
+                        </ul>
+                    </div>
                 </div>
-                <ul class="experience-list">
-                    <li>Enhanced windows file processing by 25%, overall throughput improved by 40%</li>
-                    <li>Worked on eng fundamentals like automation for major flows, increasing unit tests coverage. Increased coverage from 24% to 88%</li>
-                    <li>Implemented CHIPS solution for third party cookies depreciation for chromium based OS to cover 97% of business usecase</li>
-                    <li>Integrated new cloud Service Kapost with highspot ecosystem</li>
-                </ul>
-            </div>
-
-            <div class="experience-item">
-                <div class="experience-header">
-                    <h3>Application Engineer</h3>
-                    <span class="experience-company">Oracle</span>
-                    <span class="experience-date">Sep 2020 - Dec 2023</span>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Application Engineer</h3>
+                        <span class="company">Oracle</span>
+                        <span class="duration">Sep 2020 - Dec 2023</span>
+                        <ul>
+                            <li>Implemented REST Attachments support with P95 less than 300ms</li>
+                            <li>Developed frontend for REST attachments using VBCS</li>
+                            <li>Optimized performance with 40% improvement in results</li>
+                        </ul>
+                    </div>
                 </div>
-                <ul class="experience-list">
-                    <li>Implemented REST Attachments support for Oracle SCM with P95 less than 300ms for 25 MB size</li>
-                    <li>Developed frontend for REST attachments, utilizing VBCS, for Fusion Application attachments</li>
-                    <li>Lead SCM Purchasing team's Item Substitution project, focusing on the REST component</li>
-                    <li>Created Work Confirmations REST Document History from the ground up with p95 less than 100ms</li>
-                    <li>Optimized performance in purchasing by replacing the Buyer component query, validated 40% improvement in results with JFR-collected query IDs</li>
-                </ul>
-            </div>
-
-            <div class="experience-item">
-                <div class="experience-header">
-                    <h3>Software Intern</h3>
-                    <span class="experience-company">Samsung Research Bangalore</span>
-                    <span class="experience-date">May 2019 - Jul 2019</span>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Software Intern</h3>
+                        <span class="company">Samsung Research</span>
+                        <span class="duration">May 2019 - Jul 2019</span>
+                        <ul>
+                            <li>Implemented Alexa Skill for Samsung Smart Washer</li>
+                            <li>Developed chatbot for diagnosing Smart Washer issues</li>
+                        </ul>
+                    </div>
                 </div>
-                <ul class="experience-list">
-                    <li>Collaborated with a team of three members to successfully implement an Alexa Skill for Samsung Smart Washer, which was selected as a long-term project by Samsung Headquarters in Seoul, South Korea</li>
-                    <li>Contributed to the development of a chatbot for diagnosing Smart Washer issues</li>
-                    <li>Created a poc chat-bot using Mindmeld</li>
-                </ul>
             </div>
         </div>
     </section>
@@ -129,40 +110,94 @@
     <section id="skills" class="section">
         <div class="container">
             <h2 class="section-title">Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>CS Fundamentals</h3>
-                    <p>DSA, DBMS, Operating Systems, OOPs, Networking</p>
+            <div class="skills-container">
+                <div class="skills-line">
+                    <span class="skill-item">DSA</span>
+                    <span class="skill-item">Java</span>
+                    <span class="skill-item">Python</span>
+                    <span class="skill-item">C++</span>
+                    <span class="skill-item">JavaScript</span>
+                    <span class="skill-item">Ruby</span>
+                    <span class="skill-item">AWS</span>
+                    <span class="skill-item">Kubernetes</span>
+                    <span class="skill-item">Docker</span>
+                    <span class="skill-item">Terraform</span>
+                    <span class="skill-item">Git</span>
+                    <span class="skill-item">MongoDB</span>
+                    <span class="skill-item">PostgreSQL</span>
+                    <span class="skill-item">Redis</span>
+                    <span class="skill-item">REST APIs</span>
+                    <span class="skill-item">Microservices</span>
+                    <span class="skill-item">System Design</span>
+                    <span class="skill-item">Performance Optimization</span>
+                    <span class="skill-item">Unit Testing</span>
+                    <span class="skill-item">CI/CD</span>
                 </div>
-                <div class="skill-category">
-                    <h3>Languages</h3>
-                    <p>C/C++, Java, JS, Ruby, Python</p>
+                <div class="skills-line">
+                    <span class="skill-item">Backend Development</span>
+                    <span class="skill-item">Database Design</span>
+                    <span class="skill-item">API Development</span>
+                    <span class="skill-item">Cloud Architecture</span>
+                    <span class="skill-item">DevOps</span>
+                    <span class="skill-item">Monitoring</span>
+                    <span class="skill-item">Logging</span>
+                    <span class="skill-item">Security</span>
+                    <span class="skill-item">Scalability</span>
+                    <span class="skill-item">High Availability</span>
+                    <span class="skill-item">Load Balancing</span>
+                    <span class="skill-item">Caching</span>
+                    <span class="skill-item">Message Queues</span>
+                    <span class="skill-item">Event Streaming</span>
+                    <span class="skill-item">GraphQL</span>
+                    <span class="skill-item">gRPC</span>
+                    <span class="skill-item">WebSockets</span>
+                    <span class="skill-item">OAuth</span>
+                    <span class="skill-item">JWT</span>
+                    <span class="skill-item">OAuth2</span>
                 </div>
-                <div class="skill-category">
-                    <h3>Technologies</h3>
-                    <p>AWS, Terraform, OTel Metrics, Kubernetes</p>
+                <div class="skills-line">
+                    <span class="skill-item">Machine Learning</span>
+                    <span class="skill-item">Data Processing</span>
+                    <span class="skill-item">ETL Pipelines</span>
+                    <span class="skill-item">Big Data</span>
+                    <span class="skill-item">Apache Kafka</span>
+                    <span class="skill-item">Elasticsearch</span>
+                    <span class="skill-item">Redis Cluster</span>
+                    <span class="skill-item">MongoDB Atlas</span>
+                    <span class="skill-item">AWS Lambda</span>
+                    <span class="skill-item">S3</span>
+                    <span class="skill-item">EC2</span>
+                    <span class="skill-item">RDS</span>
+                    <span class="skill-item">CloudFormation</span>
+                    <span class="skill-item">Terraform</span>
+                    <span class="skill-item">Ansible</span>
+                    <span class="skill-item">Jenkins</span>
+                    <span class="skill-item">GitHub Actions</span>
+                    <span class="skill-item">Prometheus</span>
+                    <span class="skill-item">Grafana</span>
+                    <span class="skill-item">Jaeger</span>
                 </div>
-                <div class="skill-category">
-                    <h3>Tools</h3>
-                    <p>Git, Postman, MongoDB Compass, Docker, TestCafe, GitHub Copilot, windsurf</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-        <div class="container">
-            <h2 class="section-title">Projects</h2>
-            <div class="projects-grid">
-                <div class="project-item">
-                    <h3>A unified dashboard for different tools used inside team</h3>
-                </div>
-                <div class="project-item">
-                    <h3>Security enhancement by randomizing SSL port number</h3>
-                </div>
-                <div class="project-item">
-                    <h3>Next gen high freq bandwidth design for 5G technologies</h3>
+                <div class="skills-line">
+                    <span class="skill-item">System Architecture</span>
+                    <span class="skill-item">Design Patterns</span>
+                    <span class="skill-item">SOLID Principles</span>
+                    <span class="skill-item">Clean Code</span>
+                    <span class="skill-item">Code Review</span>
+                    <span class="skill-item">Agile</span>
+                    <span class="skill-item">Scrum</span>
+                    <span class="skill-item">Kanban</span>
+                    <span class="skill-item">TDD</span>
+                    <span class="skill-item">BDD</span>
+                    <span class="skill-item">Pair Programming</span>
+                    <span class="skill-item">Mentoring</span>
+                    <span class="skill-item">Technical Leadership</span>
+                    <span class="skill-item">Project Management</span>
+                    <span class="skill-item">Stakeholder Communication</span>
+                    <span class="skill-item">Problem Solving</span>
+                    <span class="skill-item">Critical Thinking</span>
+                    <span class="skill-item">Innovation</span>
+                    <span class="skill-item">Continuous Learning</span>
+                    <span class="skill-item">Adaptability</span>
                 </div>
             </div>
         </div>
@@ -172,57 +207,50 @@
     <section id="achievements" class="section">
         <div class="container">
             <h2 class="section-title">Achievements</h2>
-            <div class="achievements-list">
-                <div class="achievement-item">
-                    <h3>Winner, AI Hackathon (30+ teams)</h3>
-                    <p>Developed and presented an innovative AI-based solution, securing 1st place</p>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">🏆</div>
+                    <h3>AI Hackathon Winner</h3>
+                    <p>1st place among 30+ teams</p>
                 </div>
-                <div class="achievement-item">
-                    <h3>Global Rank 51, CodeChef February Lunchtime 2019</h3>
-                    <p>1800+ overall rating – Demonstrated strong algorithmic and problem-solving skills</p>
+                <div class="achievement-card">
+                    <div class="achievement-icon">⚡</div>
+                    <h3>CodeChef Global Rank 51</h3>
+                    <p>1800+ rating, February 2019</p>
                 </div>
-                <div class="achievement-item">
-                    <h3>Rank 1, National Science Olympiad</h3>
-                    <p>Achieved top national rank for analytical and logical reasoning</p>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🥇</div>
+                    <h3>National Science Olympiad</h3>
+                    <p>Rank 1 nationwide</p>
                 </div>
-                <div class="achievement-item">
-                    <h3>Best Sportsman Awards</h3>
-                    <p>Best outgoing sportsman and best sportsman of the year 2019-20 NIT Warangal</p>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🏃</div>
+                    <h3>Best Sportsman</h3>
+                    <p>NIT Warangal 2019-20</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer Section -->
+    <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Contact</h3>
-                    <div class="contact-info">
-                        <a href="mailto:ycsashish120@gmail.com" class="contact-link">
-                            <i class="fas fa-envelope"></i> ycsashish120@gmail.com
-                        </a>
-                        <a href="tel:+919515374137" class="contact-link">
-                            <i class="fas fa-mobile-alt"></i> +91 9515374137
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Connect</h3>
-                    <div class="social-links">
-                        <a href="https://leetcode.com/a1ashish1" target="_blank" class="social-link">
-                            <i class="fas fa-globe"></i> LeetCode
-                        </a>
-                        <a href="https://www.linkedin.com/in/a1ashish1/" target="_blank" class="social-link">
-                            <i class="fab fa-linkedin"></i> LinkedIn
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Ashish Kumar. All rights reserved.</p>
-            </div>
+        <div class="footer-content">
+            <span class="footer-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:ycsashish120@gmail.com">ycsashish120@gmail.com</a>
+            </span>
+            <span class="footer-item">
+                <i class="fas fa-mobile-alt"></i>
+                <a href="tel:+919515374137">+91 9515374137</a>
+            </span>
+            <span class="footer-item">
+                <i class="fab fa-linkedin"></i>
+                <a href="https://www.linkedin.com/in/a1ashish1/" target="_blank">LinkedIn</a>
+            </span>
+            <span class="footer-item">
+                <i class="fas fa-globe"></i>
+                <a href="https://leetcode.com/a1ashish1" target="_blank">LeetCode</a>
+            </span>
         </div>
     </footer>
 
