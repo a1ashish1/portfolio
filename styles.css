@@ -434,6 +434,79 @@ body {
 .achievement-card p {
     color: #cccccc;
     font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* Resume Section */
+.resume-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+}
+
+.resume-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 3rem;
+    text-align: center;
+    max-width: 500px;
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.resume-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 255, 136, 0.1);
+    border-color: rgba(0, 255, 136, 0.3);
+}
+
+.resume-icon {
+    font-size: 3rem;
+    color: #00ff88;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+}
+
+.resume-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.resume-info p {
+    color: #cccccc;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.resume-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #00ff88, #00cc6a);
+    color: #000000;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+}
+
+.resume-download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 255, 136, 0.4);
+    background: linear-gradient(135deg, #00cc6a, #00ff88);
+}
+
+.resume-download-btn i {
+    font-size: 1.1rem;
 }
 
 /* Footer */
@@ -677,6 +750,29 @@ body {
         font-size: 0.85rem;
     }
 
+    /* Resume Mobile Layout */
+    .resume-card {
+        padding: 2rem;
+        max-width: 100%;
+    }
+
+    .resume-icon {
+        font-size: 2.5rem;
+    }
+
+    .resume-info h3 {
+        font-size: 1.3rem;
+    }
+
+    .resume-info p {
+        font-size: 0.9rem;
+    }
+
+    .resume-download-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
     /* Footer Mobile Layout */
     .footer-content {
         flex-direction: column;
@@ -803,6 +899,30 @@ body {
         font-size: 0.8rem;
     }
 
+    /* Resume Mobile Layout */
+    .resume-card {
+        padding: 1.5rem;
+    }
+
+    .resume-icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .resume-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .resume-info p {
+        font-size: 0.85rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .resume-download-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+    }
+
     /* Footer Mobile Small */
     .footer-content {
         gap: 0.8rem;
@@ -869,6 +989,30 @@ body {
 
     .achievement-icon {
         font-size: 1.8rem;
+    }
+
+    /* Resume Mobile Layout */
+    .resume-card {
+        padding: 1rem;
+    }
+
+    .resume-icon {
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .resume-info h3 {
+        font-size: 1rem;
+    }
+
+    .resume-info p {
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .resume-download-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
     }
 }
 
