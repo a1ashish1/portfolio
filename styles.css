@@ -283,12 +283,13 @@ body {
     border-radius: 10px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    margin-left: 55%;
+    margin-left: 0;
+    margin-right: 55%;
 }
 
 .timeline-item:nth-child(even) .timeline-content {
-    margin-left: 0;
-    margin-right: 55%;
+    margin-left: 55%;
+    margin-right: 0;
 }
 
 .timeline-content h3 {
