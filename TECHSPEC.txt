@@ -1,0 +1,455 @@
+================================================================================
+  PORTFOLIO WEBSITE — TECHNICAL SPECIFICATION
+  Author: Ashish Kumar
+  Last Updated: March 2026
+================================================================================
+
+
+1. OVERVIEW
+================================================================================
+
+  A personal portfolio website rebuilt from scratch. The previous version was
+  vanilla HTML/CSS/JS served as a single index.html. The new version uses a
+  modern React-based stack with component architecture, build tooling, static
+  site generation, and automated deployment.
+
+  Live URL:     https://a1ashish1.in
+  Repository:   https://github.com/a1ashish1/portfolio
+  Hosting:      GitHub Pages (via GitHub Actions CI/CD)
+
+
+2. TECH STACK
+================================================================================
+
+  Layer             Technology          Version    Purpose
+  ─────────────────────────────────────────────────────────────────────────────
+  Framework         Next.js             14.x       React framework with App Router, SSG
+  Language          TypeScript          5.x        Type-safe JavaScript
+  UI Library        React               18.x       Component-based UI
+  Styling           Tailwind CSS        3.x        Utility-first CSS framework
+  Animations        Framer Motion       11.x       Declarative animations & transitions
+  Icons             Lucide React        0.468+     Consistent SVG icon set
+  Utilities         clsx + tailwind-merge           Conditional class merging
+  Build Tool        Next.js built-in (Webpack/SWC)  Bundling, minification, tree-shaking
+  Deployment        GitHub Actions → GitHub Pages    Automated CI/CD pipeline
+  Counter API       counterapi.dev                   Free serverless visitor counter
+
+
+3. ARCHITECTURE DIAGRAM
+================================================================================
+
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │                         GitHub Repository                          │
+  │                     (github.com/a1ashish1/portfolio)               │
+  └──────────────────────────────┬──────────────────────────────────────┘
+                                 │ git push to main
+                                 ▼
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │                      GitHub Actions Workflow                       │
+  │  ┌──────────┐   ┌───────────┐   ┌──────────┐   ┌──────────────┐  │
+  │  │ Checkout  │──▶│ npm ci    │──▶│ npm build│──▶│ Upload Pages │  │
+  │  │ code      │   │ (install) │   │ (SSG)    │   │ artifact     │  │
+  │  └──────────┘   └───────────┘   └──────────┘   └──────┬───────┘  │
+  └────────────────────────────────────────────────────────┼──────────┘
+                                                           ▼
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │                        GitHub Pages CDN                            │
+  │                   Serves static files from /out                    │
+  │                   Custom domain: a1ashish1.in                      │
+  └──────────────────────────────┬──────────────────────────────────────┘
+                                 │
+                                 ▼
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │                         User's Browser                             │
+  │                                                                    │
+  │  ┌──────────────────────────────────────────────────────────────┐  │
+  │  │  Static HTML + CSS + JS bundle                               │  │
+  │  │  ┌─────────┐ ┌──────────┐ ┌─────────────┐ ┌─────────────┐  │  │
+  │  │  │ Layout  │ │ Navbar   │ │ Sections    │ │ Footer      │  │  │
+  │  │  │ (shell) │ │ (sticky) │ │ (Hero,About │ │ (links)     │  │  │
+  │  │  │         │ │          │ │  Exp,Skills │ │             │  │  │
+  │  │  │         │ │          │ │  Achieve,   │ │             │  │  │
+  │  │  │         │ │          │ │  Contact)   │ │             │  │  │
+  │  │  └─────────┘ └──────────┘ └─────────────┘ └─────────────┘  │  │
+  │  └──────────────────────────────────────────────────────────────┘  │
+  │                         │                                          │
+  │                         ▼ (on page load)                           │
+  │              ┌─────────────────────┐                               │
+  │              │  counterapi.dev     │  ← free counter API           │
+  │              │  (visitor counter)  │     (no auth, no DB needed)   │
+  │              └─────────────────────┘                               │
+  └─────────────────────────────────────────────────────────────────────┘
+
+
+4. PROJECT STRUCTURE
+================================================================================
+
+  portfolio/
+  ├── .github/
+  │   └── workflows/
+  │       └── deploy.yml            # GitHub Actions CI/CD pipeline
+  ├── public/
+  │   ├── CNAME                     # Custom domain config for GitHub Pages
+  │   └── .nojekyll                 # Disables Jekyll (serves _next/ dir)
+  ├── src/
+  │   ├── app/                      # Next.js App Router
+  │   │   ├── layout.tsx            # Root HTML shell, metadata, fonts
+  │   │   ├── page.tsx              # Main page — composes all sections
+  │   │   └── globals.css           # Tailwind directives, base styles, utilities
+  │   ├── components/
+  │   │   ├── layout/               # Structural components
+  │   │   │   ├── Navbar.tsx        # Fixed header with scroll detection
+  │   │   │   └── Footer.tsx        # Social links, branding
+  │   │   ├── sections/             # Page sections (each is self-contained)
+  │   │   │   ├── Hero.tsx          # Full-viewport intro with terminal card
+  │   │   │   ├── About.tsx         # Bio + stat cards
+  │   │   │   ├── Experience.tsx    # Timeline with role details
+  │   │   │   ├── Skills.tsx        # Categorized skill grid
+  │   │   │   ├── Achievements.tsx  # Achievement cards with glow effect
+  │   │   │   └── Contact.tsx       # Email/LinkedIn cards + CTAs
+  │   │   └── ui/                   # Reusable primitives
+  │   │       ├── GridBackground.tsx    # Fixed dot-pattern background + glow
+  │   │       ├── SectionHeading.tsx    # Animated section header (label + title)
+  │   │       ├── ScrollReveal.tsx      # Scroll-triggered fade-in wrapper
+  │   │       ├── GlowCard.tsx          # Card with hover glow border effect
+  │   │       ├── TerminalCard.tsx      # Typing animation terminal window
+  │   │       └── VisitorCounter.tsx    # API-based visitor counter
+  │   ├── data/
+  │   │   └── content.ts           # ALL text content, links, config (single source)
+  │   └── lib/
+  │       └── utils.ts             # cn() utility for Tailwind class merging
+  ├── package.json                 # Dependencies and scripts
+  ├── tsconfig.json                # TypeScript config with path aliases (@/*)
+  ├── tailwind.config.ts           # Custom theme: colors, fonts, animations
+  ├── postcss.config.js            # PostCSS plugins (Tailwind + Autoprefixer)
+  ├── next.config.mjs              # Next.js config (static export mode)
+  └── .gitignore                   # Ignores node_modules, .next, out
+
+
+5. KEY CONCEPTS EXPLAINED
+================================================================================
+
+  5.1  NEXT.JS (Framework)
+  ─────────────────────────
+  Next.js is a React framework that adds:
+  - File-based routing: files in src/app/ become URL routes automatically
+  - Static Site Generation (SSG): pre-renders pages at build time into HTML
+  - App Router: the layout.tsx / page.tsx convention for defining pages
+  - Built-in optimization: code splitting, minification, tree-shaking
+
+  In this project, we use `output: "export"` in next.config.mjs, which tells
+  Next.js to generate a fully static site (plain HTML/CSS/JS files in /out).
+  This is similar to your old index.html approach, but with all the benefits
+  of React components and build optimization.
+
+  Analogy for backend devs: Think of Next.js as Spring Boot for the frontend.
+  Spring Boot gives you conventions (controllers, services, repositories) on
+  top of Java. Next.js gives you conventions (pages, layouts, components) on
+  top of React.
+
+
+  5.2  REACT & COMPONENTS
+  ─────────────────────────
+  React lets you build UI as composable functions (components). Each component:
+  - Takes props (like function arguments)
+  - Returns JSX (HTML-like syntax)
+  - Can have local state (useState) and side effects (useEffect)
+
+  Example flow:
+    page.tsx renders <Hero /> → Hero.tsx renders <TerminalCard /> → etc.
+
+  "use client" directive: Marks a component to run in the browser (client-side).
+  Without it, Next.js tries to render on the server. Since we use animations
+  and browser APIs (IntersectionObserver, window), most components are client.
+
+
+  5.3  TYPESCRIPT
+  ─────────────────────────
+  TypeScript = JavaScript + static types. Same as Java's type system but for JS.
+  - Interfaces define shapes: interface ExperienceItem { role: string; ... }
+  - Generic types: useState<number | null>(null)
+  - Catches errors at compile time, not runtime
+
+  The tsconfig.json configures:
+  - Path aliases: @/* maps to ./src/* (so you write @/components/... not ../../../)
+  - Strict mode: enables all type-checking rules
+  - JSX preserve: lets Next.js handle JSX transformation
+
+
+  5.4  TAILWIND CSS
+  ─────────────────────────
+  Utility-first CSS framework. Instead of writing CSS files, you apply small
+  utility classes directly in HTML/JSX:
+
+    Traditional CSS:
+      .card { background: #18181b; border: 1px solid #27272a; border-radius: 12px; }
+
+    Tailwind:
+      <div className="bg-card border border-border rounded-xl" />
+
+  Benefits:
+  - No CSS files to maintain (styles live with components)
+  - Consistent spacing/colors via theme config (tailwind.config.ts)
+  - Unused styles are removed at build time (tree-shaking)
+  - Responsive: prefix with sm:, md:, lg: for breakpoints
+
+  The tailwind.config.ts file defines our custom design system:
+  - Colors: background, surface, card, border, accent (emerald)
+  - Fonts: Inter (body), JetBrains Mono (code elements)
+  - Animations: fadeIn, slideUp, glowPulse, blink, float
+
+
+  5.5  FRAMER MOTION (Animations)
+  ─────────────────────────────────
+  Declarative animation library for React. You describe what you want, not how:
+
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}     // starting state
+      animate={{ opacity: 1, y: 0 }}       // end state
+      transition={{ duration: 0.6 }}       // timing
+    />
+
+  Key patterns used in this project:
+  - Scroll-triggered: useInView hook detects when element enters viewport
+  - Staggered: parent staggers children animations (hero elements appear one by one)
+  - Hover: whileHover={{ y: -4 }} lifts cards on mouse hover
+  - AnimatePresence: animates components when they mount/unmount (mobile menu)
+
+
+  5.6  STATIC SITE GENERATION (SSG)
+  ────────────────────────────────────
+  When you run `npm run build`, Next.js:
+  1. Compiles TypeScript → JavaScript
+  2. Bundles all components into optimized chunks
+  3. Pre-renders every page into static HTML
+  4. Outputs everything to the /out directory
+
+  The /out directory contains:
+  - index.html (your page, pre-rendered)
+  - _next/static/css/*.css (all styles, minified)
+  - _next/static/chunks/*.js (all JavaScript, code-split)
+
+  This is what gets deployed to GitHub Pages. The browser downloads these
+  static files and React "hydrates" them (attaches interactivity).
+
+
+  5.7  THE BUILD PIPELINE
+  ─────────────────────────
+  What happens when you run `npm run build`:
+
+    TypeScript    Tailwind CSS    React Components
+        │              │                │
+        ▼              ▼                ▼
+    ┌──────────────────────────────────────┐
+    │         Next.js Build (SWC)          │
+    │  - Type checking                     │
+    │  - JSX → JavaScript                  │
+    │  - Tree-shaking (remove unused code) │
+    │  - Code splitting (per-route chunks) │
+    │  - CSS purging (remove unused styles)│
+    │  - Minification                      │
+    │  - Static HTML generation            │
+    └──────────────────┬───────────────────┘
+                       ▼
+                   /out directory
+                   (static files ready to serve)
+
+
+6. CI/CD PIPELINE (GitHub Actions)
+================================================================================
+
+  File: .github/workflows/deploy.yml
+
+  Trigger: Every push to the `main` branch
+
+  Pipeline:
+  ┌─────────────┐    ┌───────────┐    ┌───────────┐    ┌──────────────┐
+  │  Checkout    │───▶│  Install  │───▶│   Build   │───▶│   Upload     │
+  │  repository  │    │  deps     │    │   (SSG)   │    │   artifact   │
+  │              │    │  npm ci   │    │ npm build │    │   /out dir   │
+  └─────────────┘    └───────────┘    └───────────┘    └──────┬───────┘
+                                                              │
+                                                              ▼
+                                                       ┌──────────────┐
+                                                       │   Deploy to  │
+                                                       │ GitHub Pages │
+                                                       │              │
+                                                       └──────────────┘
+
+  Key files for deployment:
+  - public/CNAME         → Tells GitHub Pages to use custom domain a1ashish1.in
+  - public/.nojekyll     → Disables Jekyll processing (so _next/ dir is served)
+
+
+7. DESIGN SYSTEM
+================================================================================
+
+  7.1  COLOR PALETTE
+  ─────────────────────
+  Name            Hex         Usage
+  background      #09090b     Page background (near-black)
+  surface         #111113     Elevated surfaces
+  card            #18181b     Card backgrounds
+  border          #27272a     Default borders
+  border-light    #3f3f46     Emphasized borders
+  accent          #10b981     Primary accent (emerald-500)
+  accent-light    #34d399     Hover state accent
+  accent-dark     #059669     Pressed state accent
+  muted           #a1a1aa     Secondary text
+  zinc-50         #fafafa     Primary text
+  zinc-400        #a1a1aa     Body text
+
+  7.2  TYPOGRAPHY
+  ─────────────────────
+  Font            Usage                   Weight
+  Inter           Body text, headings     300-800
+  JetBrains Mono  Code, labels, terminal  400-600
+
+  Scale:
+  - Hero name:     text-4xl to text-7xl (responsive)
+  - Hero title:    text-2xl to text-4xl
+  - Section title: text-3xl to text-4xl
+  - Body:          text-base to text-lg
+  - Labels/mono:   text-xs to text-sm
+
+  7.3  SPACING
+  ─────────────────────
+  - Section padding:    py-24 md:py-32 (96px / 128px)
+  - Section max-width:  max-w-5xl (1024px)
+  - Container padding:  px-6 sm:px-8 lg:px-10
+  - Card padding:       p-5 to p-8
+  - Component gaps:     gap-4 to gap-16
+
+  7.4  ANIMATIONS
+  ─────────────────────
+  Name          Duration  Easing                    Usage
+  fadeIn        0.6s      ease-out                  General reveal
+  slideUp       0.6s      cubic-bezier(0.21,0.47,   Scroll-triggered sections
+                          0.32,0.98)
+  glowPulse     3s        ease-in-out (infinite)    Background glow
+  blink         1s        step-end (infinite)       Terminal cursor
+  float         6s        ease-in-out (infinite)    Floating elements
+  hover lift    0.2s      default                   Card hover (y: -4px)
+
+
+8. COMPONENT PATTERNS
+================================================================================
+
+  8.1  ScrollReveal — Reusable scroll-triggered animation wrapper
+  ──────────────────────────────────────────────────────────────────
+  Uses Framer Motion's useInView hook with IntersectionObserver under the hood.
+  Wrap any content to animate it when it scrolls into view:
+
+    <ScrollReveal delay={0.1} direction="up">
+      <SomeContent />
+    </ScrollReveal>
+
+  Props: children, className, delay (seconds), direction (up|left|right)
+  Triggers once (once: true), with -80px root margin for earlier trigger.
+
+  8.2  GlowCard — Hover glow effect card
+  ─────────────────────────────────────────
+  Uses CSS pseudo-element with gradient + blur for the glow. On hover:
+  - Card lifts up 4px (Framer Motion whileHover)
+  - Glow border fades in (CSS opacity transition)
+  - Border color shifts to accent
+
+  8.3  TerminalCard — Typing animation terminal
+  ─────────────────────────────────────────────────
+  Simulates a terminal with:
+  1. Typing effect: characters appear one by one via setInterval
+  2. Blinking cursor: CSS animation while typing
+  3. Output reveal: fades in after typing completes
+  4. Triggered by scroll (useInView)
+
+  8.4  SectionHeading — Consistent section headers
+  ──────────────────────────────────────────────────
+  Every section uses the same pattern:
+  - Mono-spaced label in accent color (e.g., "// about")
+  - Bold title in white
+  - Optional muted description
+  - Each element animates in with staggered delay
+
+  8.5  VisitorCounter — API-based page view counter
+  ───────────────────────────────────────────────────
+  - Calls counterapi.dev on mount to increment + fetch count
+  - Adds base offset of 458 (historical visits before counter was added)
+  - Graceful fallback: shows 458 if API is unreachable
+  - Renders with fade-in transition once count loads
+
+
+9. CONTENT MANAGEMENT
+================================================================================
+
+  All text content lives in a single file: src/data/content.ts
+
+  This file exports typed objects for each section:
+  - siteConfig:       name, email, phone, resume URL, social links
+  - heroData:         greeting, name, title, tagline, CTAs, terminal content
+  - aboutData:        paragraphs, stat cards
+  - experienceData:   array of {role, company, duration, bullets, tech}
+  - skillsData:       array of {category name, skills[]}
+  - achievementsData: array of {title, description, icon}
+  - navLinks:         array of {label, href}
+
+  To update content: edit src/data/content.ts → push → auto-deploys.
+  No component changes needed for content updates.
+
+
+10. COMMANDS REFERENCE
+================================================================================
+
+  npm install          Install all dependencies from package.json
+  npm run dev          Start local dev server at http://localhost:3000
+                       (hot reload — changes reflect instantly)
+  npm run build        Generate static site in /out directory
+  npm run start        Serve the built site locally (test production build)
+  npm run lint         Run ESLint checks
+
+
+11. KEY FILES QUICK REFERENCE
+================================================================================
+
+  File                      What it does
+  ─────────────────────────────────────────────────────────────────────────────
+  package.json              Dependencies list + npm scripts
+  next.config.mjs           Next.js settings (static export, image config)
+  tsconfig.json             TypeScript compiler settings + path aliases
+  tailwind.config.ts        Design system (colors, fonts, animations, spacing)
+  postcss.config.js         CSS processing pipeline config
+  .gitignore                Files excluded from git (node_modules, .next, out)
+  .github/workflows/        CI/CD pipeline definition
+  public/CNAME              Custom domain for GitHub Pages
+  public/.nojekyll          Disables Jekyll on GitHub Pages
+  src/app/layout.tsx        HTML shell, <head> metadata, SEO tags
+  src/app/page.tsx          Main page — imports and renders all sections
+  src/app/globals.css       Global styles, Tailwind directives, custom utilities
+  src/data/content.ts       Single source of truth for all text content
+  src/lib/utils.ts          cn() helper for conditional Tailwind classes
+
+
+12. HOW THINGS CONNECT (Request Flow)
+================================================================================
+
+  User visits a1ashish1.in
+      │
+      ▼
+  GitHub Pages CDN serves static HTML from /out
+      │
+      ▼
+  Browser receives index.html
+  ├── Loads CSS from _next/static/css/ (styles render immediately)
+  ├── Loads JS from _next/static/chunks/ (React hydrates the page)
+  │   ├── Navbar initializes (scroll listener, IntersectionObserver)
+  │   ├── VisitorCounter fires API call to counterapi.dev
+  │   ├── Hero typing animation starts
+  │   └── ScrollReveal observers attach to all sections
+  └── User scrolls → IntersectionObserver triggers → Framer Motion animates
+
+  No server involved after initial page load. Everything runs client-side.
+  The only network call is the visitor counter API (fire-and-forget).
+
+
+================================================================================
+  END OF TECHNICAL SPECIFICATION
+================================================================================
