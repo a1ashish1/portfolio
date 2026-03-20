@@ -1,86 +1,53 @@
-# Ashish Kumar - Portfolio Website
+# Ashish Kumar — Portfolio
 
-A clean, modern, and responsive portfolio website built with HTML, CSS, and JavaScript. Features a black and white theme with smooth scrolling navigation and mobile-friendly design.
+Personal portfolio built with Next.js 14, TypeScript, Tailwind CSS, and Framer Motion.
 
-## Features
+## Stack
 
-- **Single Page Application**: All sections on one page with smooth scrolling navigation
-- **Responsive Design**: Works perfectly on desktop, tablet, and mobile devices
-- **Clean Black & White Theme**: Modern and professional appearance
-- **Interactive Elements**: Hover effects and smooth animations
-- **Mobile Menu**: Hamburger menu for mobile devices
-- **Auto-scroll Navigation**: Click any section to smoothly scroll to it
+- **Next.js 14** (App Router, Static Export)
+- **TypeScript**
+- **Tailwind CSS 3**
+- **Framer Motion** — scroll-triggered animations, micro-interactions
+- **Lucide React** — icons
 
-## Sections
-
-1. **Hero Section**: Introduction with social links
-2. **About**: Professional summary
-3. **Education**: Academic background
-4. **Work Experience**: Detailed work history
-5. **Skills**: Technical skills organized by category
-6. **Projects**: Key projects and achievements
-7. **Achievements**: Awards and recognitions
-
-## How to Run
-
-### Option 1: Simple Method (Recommended)
-1. Open the `index.html` file in your web browser
-2. The website will load immediately with all functionality
-
-### Option 2: Using a Local Server
-If you want to run it on a local server:
+## Getting Started
 
 ```bash
-# Using Python 3
-python -m http.server 8000
-
-# Using Python 2
-python -m SimpleHTTPServer 8000
-
-# Using Node.js (if you have http-server installed)
-npx http-server
+npm install
+npm run dev
 ```
 
-Then open `http://localhost:8000` in your browser.
+Open [http://localhost:3000](http://localhost:3000).
 
-### Option 3: Using Live Server (VS Code)
-1. Install the "Live Server" extension in VS Code
-2. Right-click on `index.html`
-3. Select "Open with Live Server"
+## Build & Deploy
 
-## File Structure
-
-```
-portfolio/
-├── index.html          # Main HTML file
-├── styles.css          # CSS styles
-├── script.js           # JavaScript functionality
-└── README.md           # This file
+```bash
+npm run build
 ```
 
-## Browser Compatibility
+Generates a static export in the `out/` directory — deployable to Vercel, GitHub Pages, Netlify, or any static host.
 
-- Chrome (recommended)
-- Firefox
-- Safari
-- Edge
-- Mobile browsers
+### GitHub Pages
 
-## Customization
+Set the `Source` to the `out/` directory, or use a GitHub Action to build and deploy.
 
-To customize the portfolio for your own use:
+### Vercel
 
-1. **Personal Information**: Update the content in `index.html`
-2. **Styling**: Modify colors and fonts in `styles.css`
-3. **Functionality**: Add or modify features in `script.js`
+Connect the repo and deploy — Vercel auto-detects Next.js. Remove `output: "export"` from `next.config.mjs` to enable SSR features.
 
-## Technologies Used
+## Project Structure
 
-- HTML5
-- CSS3 (with Flexbox and Grid)
-- Vanilla JavaScript
-- Font Awesome Icons
+```
+src/
+├── app/              # Next.js App Router (layout, page, globals)
+├── components/
+│   ├── layout/       # Navbar, Footer
+│   ├── sections/     # Hero, About, Experience, Skills, Achievements, Contact
+│   └── ui/           # Reusable UI primitives
+├── data/             # Centralized content (easy to update)
+└── lib/              # Utilities
+```
 
-## License
+## Editing Content
 
-This project is open source and available under the MIT License. 
+All text content lives in `src/data/content.ts` — update experience, skills, achievements, and links in one place.
