@@ -68,10 +68,8 @@ export function Navbar() {
             <span className="text-accent">.</span>
             <span className="text-muted">dev</span>
           </a>
-          <div className="hidden sm:block h-4 w-px bg-border" />
-          <div className="hidden sm:block">
-            <VisitorCounter />
-          </div>
+          <div className="h-4 w-px bg-border" />
+          <VisitorCounter />
         </div>
 
         <ul className="hidden md:flex items-center gap-1">
