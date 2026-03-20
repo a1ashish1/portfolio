@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { navLinks, siteConfig } from "@/data/content";
 import { cn } from "@/lib/utils";
+import { VisitorCounter } from "@/components/ui/VisitorCounter";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -58,14 +59,20 @@ export function Navbar() {
       )}
     >
       <nav className="section-container flex items-center justify-between h-16 md:h-20">
-        <a
-          href="#home"
-          className="font-mono text-lg font-semibold text-zinc-100 hover:text-accent transition-colors"
-        >
-          {siteConfig.name.split(" ")[0].toLowerCase()}
-          <span className="text-accent">.</span>
-          <span className="text-muted">dev</span>
-        </a>
+        <div className="flex items-center gap-4">
+          <a
+            href="#home"
+            className="font-mono text-lg font-semibold text-zinc-100 hover:text-accent transition-colors"
+          >
+            {siteConfig.name.split(" ")[0].toLowerCase()}
+            <span className="text-accent">.</span>
+            <span className="text-muted">dev</span>
+          </a>
+          <div className="hidden sm:block h-4 w-px bg-border" />
+          <div className="hidden sm:block">
+            <VisitorCounter />
+          </div>
+        </div>
 
         <ul className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
