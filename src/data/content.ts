@@ -5,7 +5,7 @@ export const siteConfig = {
   phone: "+91 9515374137",
   location: "India",
   resumeUrl:
-    "https://drive.google.com/file/d/14hSjnqDjuEtkCY9z4FejgLWNwR3MDx7l/view?usp=sharing",
+    "https://drive.google.com/file/d/1mzDx5Hy-eA4vh61iclv7hoRIEI0ZtMna/view",
   social: {
     linkedin: "https://www.linkedin.com/in/a1ashish1/",
     leetcode: "https://leetcode.com/a1ashish1",
@@ -18,7 +18,7 @@ export const heroData = {
   name: "Ashish Kumar",
   title: "Senior Software Engineer",
   tagline:
-    "I architect backend systems that scale — from distributed services handling millions of requests to AI-powered pipelines processing 50M+ records.",
+    "Backend engineer with 6 years across Oracle, Highspot, and ABCFitness. I build APIs, data pipelines, and AI-powered features for enterprise products — focused on things that are reliable, fast, and actually useful.",
   cta: {
     primary: { label: "Download Resume", href: siteConfig.resumeUrl },
     secondary: { label: "Get in Touch", href: "#contact" },
@@ -27,29 +27,26 @@ export const heroData = {
     command: "cat profile.json",
     output: `{
   "role": "Senior Software Engineer",
-  "experience": "6+ years",
-  "focus": [
-    "distributed systems",
-    "data pipelines",
-    "applied AI"
-  ],
+  "experience": "6 years",
+  "stack": ["Java", "Python", "AWS", "Kafka"],
   "current": "ABCFitness",
-  "status": "building & shipping"
+  "previous": ["Highspot", "Oracle"],
+  "education": "NIT Warangal"
 }`,
   },
 };
 
 export const aboutData = {
   paragraphs: [
-    "Over the past 6+ years, I've been building backend systems where reliability, performance, and scale aren't optional — they're the baseline. From distributed services powering enterprise platforms to LLM-driven search engines processing 50M+ records, I focus on turning complex problems into simple, dependable solutions.",
-    "At Highspot, I led the technical direction for semantic search powered by LLMs and RAG, driving a 33% cost reduction and 65% improvement in processing efficiency. At Oracle, I built high-performance REST APIs with P95 latency under 300ms and improved system performance by 40%.",
-    "I believe great backend engineering is invisible — when systems just work at scale, that's when you know the infrastructure is doing its job.",
+    "I've spent the last 6 years writing backend code for enterprise products. At Oracle, that meant building REST APIs for supply chain management — handling large file attachments at sub-300ms latency, optimizing database queries, and shipping features used by enterprise customers daily.",
+    "At Highspot, I shifted toward AI-driven features — architecting data layers for document parsing, generating slide-level embeddings for content similarity, and driving AI tooling adoption (Copilot, Cursor) across the team that cut turnaround time by 75%. Currently at ABCFitness, I'm building B2B healthcare integrations with Spring, Oracle DB, and Kafka.",
+    "I studied at NIT Warangal (8.65 GPA), enjoy competitive programming (CodeChef global rank 51), and when I'm not coding, I'm probably playing table tennis.",
   ],
   stats: [
     { value: "6+", label: "Years Experience" },
-    { value: "50M+", label: "Records Processed" },
-    { value: "99.99%", label: "Uptime Delivered" },
-    { value: "33%", label: "Cost Reduction" },
+    { value: "< 300ms", label: "P95 API Latency" },
+    { value: "75%", label: "Faster Turnaround" },
+    { value: "40%", label: "Query Perf Gain" },
   ],
 };
 
@@ -63,47 +60,44 @@ export interface ExperienceItem {
 
 export const experienceData: ExperienceItem[] = [
   {
-    role: "Senior Software Engineer",
+    role: "Senior Software Developer",
     company: "ABCFitness",
     duration: "Sep 2025 — Present",
     bullets: [
-      "Building B2B healthcare capabilities for enterprise gym and club networks, architecting scalable member data flows across distributed systems",
-      "Engineering backend services with Oracle DB, Spring (Java), and Kafka for real-time event processing and data consistency",
+      "Developing secure, scalable B2B healthcare integrations for gyms and clubs using Spring (Java), Oracle DB, and Kafka, with a focus on reliable member data flows",
     ],
-    tech: ["Java", "Spring", "Oracle DB", "Kafka", "Microservices"],
+    tech: ["Java", "Spring", "Oracle DB", "Kafka"],
   },
   {
     role: "SDE II L2",
     company: "Highspot",
     duration: "Dec 2023 — Sep 2025",
     bullets: [
-      "Led technical direction for LLM + RAG powered semantic search across enterprise content, serving as the subject matter expert for the search platform",
-      "Designed and implemented embeddings pipeline processing 50M+ records with optimized cost, efficiency, and timing — achieving ~33% cost reduction",
-      "Improved legacy file processing throughput by ~65% through architectural refactoring and pipeline optimization",
-      "Owned content-based integrations from cloud storage services, building reliable ingestion and processing infrastructure",
+      "Spearheaded adoption of AI tools (GitHub Copilot, Windsurf, Cursor) and developed automation workflows, reducing turnaround time by 75% and increasing unit test coverage from 24% to 88%",
+      "Architected a data layer for PPT and DOCX parsing to enable AI-driven content understanding; generated slide-level embeddings enabling industry-first similarity analysis and performance metrics",
+      "Optimized legacy Windows file processing system with a 40% throughput gain; implemented CHIPS for third-party cookie deprecation, covering 97% of use cases on Chromium OS",
     ],
-    tech: ["Python", "LLMs", "RAG", "Embeddings", "AWS", "Elasticsearch"],
+    tech: ["Python", "Embeddings", "AI Tooling", "CHIPS", "AWS"],
   },
   {
     role: "Application Engineer",
     company: "Oracle",
     duration: "Sep 2020 — Dec 2023",
     bullets: [
-      "Built high-performance REST Attachments API achieving P95 latency < 300ms, serving enterprise clients at scale",
-      "Delivered ~40% performance improvement through systematic profiling, query optimization, and caching strategies",
-      "Developed the REST attachments frontend using Oracle VBCS, bridging backend capabilities with user-facing interfaces",
+      "Built high-performance REST APIs for Oracle SCM, including 25MB attachments with P95 latency under 300ms and document history under 100ms",
+      "Led REST integration for Item Substitution in Oracle Purchasing, ensuring scalable backend delivery",
+      "Improved query performance by 40% in Purchasing by redesigning Buyer component, validated via JFR profiling",
     ],
-    tech: ["Java", "REST APIs", "Oracle DB", "VBCS", "Performance Tuning"],
+    tech: ["Java", "REST APIs", "Oracle DB", "JFR", "Performance Tuning"],
   },
   {
     role: "Software Intern",
     company: "Samsung Research",
     duration: "May 2019 — Jul 2019",
     bullets: [
-      "Built an Alexa Skill for Samsung Smart Washer, enabling voice-controlled appliance management through natural language",
-      "Developed a diagnostic chatbot for Smart Washer troubleshooting, reducing support ticket volume",
+      "Engineered a chatbot within the Samsung Smart Washer system, providing real-time troubleshooting and usage tips, decreasing service calls by an estimated 15% based on pilot data",
     ],
-    tech: ["Alexa SDK", "Node.js", "NLP", "IoT"],
+    tech: ["Chatbot", "NLP", "IoT"],
   },
 ];
 
@@ -122,9 +116,9 @@ export const skillsData: SkillCategory[] = [
     skills: [
       "Spring Boot",
       "REST",
+      "FastAPI",
       "GraphQL",
       "gRPC",
-      "WebSockets",
       "OAuth2 / JWT",
     ],
   },
@@ -147,18 +141,18 @@ export const skillsData: SkillCategory[] = [
       "Redis",
       "Elasticsearch",
       "Oracle DB",
-      "DynamoDB",
+      "Solr",
     ],
   },
   {
-    name: "Data & AI",
+    name: "AI & Data",
     skills: [
-      "Apache Kafka",
-      "ETL Pipelines",
       "LLMs / RAG",
       "Embeddings",
-      "Machine Learning",
-      "Big Data",
+      "Vector DBs",
+      "Prompt Engineering",
+      "AI Agents",
+      "Apache Kafka",
     ],
   },
   {
@@ -173,14 +167,14 @@ export const skillsData: SkillCategory[] = [
     ],
   },
   {
-    name: "Observability",
+    name: "Tooling",
     skills: [
-      "Prometheus",
-      "Grafana",
-      "Jaeger",
-      "Distributed Tracing",
-      "Logging",
-      "Alerting",
+      "GitHub Copilot",
+      "Cursor AI",
+      "OTel Metrics",
+      "Git",
+      "Postman",
+      "Docker Compose",
     ],
   },
 ];
@@ -194,32 +188,32 @@ export interface Achievement {
 export const achievementsData: Achievement[] = [
   {
     title: "AI Hackathon Winner",
-    description: "1st place among 30+ teams in company-wide AI hackathon",
+    description: "Ranked 1st among 45+ teams in Build AI with AI hackathon",
     icon: "trophy",
   },
   {
     title: "CodeChef Global Rank 51",
-    description: "1800+ rating in competitive programming, February 2019",
+    description: "1800+ rating, CodeChef Feb Lunchtime 2019",
     icon: "code",
   },
   {
     title: "National Science Olympiad",
-    description: "Rank 1 nationwide in the National Science Olympiad",
+    description: "Rank 1 nationwide for analytical and logical reasoning",
     icon: "award",
   },
   {
-    title: "Best Sportsman Award",
+    title: "Best Sportsman",
     description:
-      "Recognized as Best Sportsman at NIT Warangal, 2019–20",
+      "Best outgoing sportsman and best sportsman of the year, NIT Warangal 2019–20",
     icon: "medal",
   },
   {
-    title: "Merit Scholar",
-    description: "Top 3 percentile merit scholarship recipient for all 4 years of undergraduate study",
+    title: "NIT Warangal",
+    description: "B.Tech with 8.65/10 GPA",
     icon: "graduation",
   },
   {
-    title: "State TT Champion",
+    title: "Table Tennis",
     description:
       "State and university table tennis champion, represented at national level",
     icon: "target",
