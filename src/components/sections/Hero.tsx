@@ -27,8 +27,8 @@ export function Hero() {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      <div className="absolute inset-0 grid-pattern opacity-30 mask-fade-b" />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/[0.04] rounded-full blur-[150px]" />
+      <div className="absolute inset-0 grid-pattern opacity-30 mask-fade-b pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/[0.04] rounded-full blur-[150px] pointer-events-none" />
 
       <div className="section-container w-full py-20 md:py-0">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">

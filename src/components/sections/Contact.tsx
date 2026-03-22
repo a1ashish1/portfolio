@@ -8,7 +8,7 @@ import { Mail, Linkedin, ExternalLink } from "lucide-react";
 export function Contact() {
   return (
     <section id="contact" className="py-24 md:py-32 relative">
-      <div className="absolute inset-0 grid-pattern opacity-15 mask-fade-y" />
+      <div className="absolute inset-0 grid-pattern opacity-15 mask-fade-y pointer-events-none" />
       <div className="section-container relative">
         <SectionHeading
           label="// contact"

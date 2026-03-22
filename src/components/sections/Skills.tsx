@@ -7,7 +7,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 export function Skills() {
   return (
     <section id="skills" className="py-24 md:py-32 relative">
-      <div className="absolute inset-0 dot-pattern opacity-20" />
+      <div className="absolute inset-0 dot-pattern opacity-20 pointer-events-none" />
       <div className="section-container relative">
         <SectionHeading
           label="// skills"
