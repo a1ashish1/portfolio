@@ -188,17 +188,20 @@ export interface Achievement {
 export const achievementsData: Achievement[] = [
   {
     title: "AI Hackathon Winner",
-    description: "Ranked 1st among 45+ teams in Build AI with AI hackathon",
+    description:
+      "Ranked 1st among 45+ teams in the Build AI with AI hackathon at Highspot",
     icon: "trophy",
   },
   {
     title: "CodeChef Global Rank 51",
-    description: "1800+ rating, CodeChef Feb Lunchtime 2019",
+    description:
+      "Achieved 1800+ rating and a global rank of 51 in CodeChef February Lunchtime 2019",
     icon: "code",
   },
   {
     title: "National Science Olympiad",
-    description: "Rank 1 nationwide for analytical and logical reasoning",
+    description:
+      "Secured rank 1 nationwide in analytical and logical reasoning assessment",
     icon: "award",
   },
   {
@@ -209,13 +212,14 @@ export const achievementsData: Achievement[] = [
   },
   {
     title: "NIT Warangal",
-    description: "B.Tech with 8.65/10 GPA",
+    description:
+      "B.Tech in Computer Science from NIT Warangal, graduating with a GPA of 8.65/10",
     icon: "graduation",
   },
   {
     title: "Table Tennis",
     description:
-      "State and university table tennis champion, represented at national level",
+      "State and university table tennis champion, represented NIT Warangal at national level",
     icon: "target",
   },
 ];

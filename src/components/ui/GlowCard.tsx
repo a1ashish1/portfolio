@@ -14,7 +14,7 @@ export function GlowCard({ children, className, glowClassName }: GlowCardProps) 
   return (
     <motion.div
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="relative group"
+      className="relative group h-full"
     >
       <div
         className={cn(

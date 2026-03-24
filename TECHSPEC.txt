@@ -354,6 +354,11 @@
   - Glow border fades in (CSS opacity transition)
   - Border color shifts to accent
 
+  Height propagation: The outer motion.div carries `h-full` so that when
+  GlowCard is used inside CSS grid cells, the card stretches to fill the
+  full row height. This ensures uniform card sizing in grid layouts like
+  the Achievements section.
+
   8.3  TerminalCard — Typing animation terminal
   ─────────────────────────────────────────────────
   Simulates a terminal with:
@@ -390,6 +395,7 @@
   - experienceData:   array of {role, company, duration, bullets, tech}
   - skillsData:       array of {category name, skills[]}
   - achievementsData: array of {title, description, icon}
+                      (descriptions are kept at ~70-85 chars for uniform card sizing)
   - navLinks:         array of {label, href}
 
   To update content: edit src/data/content.ts → push → auto-deploys.

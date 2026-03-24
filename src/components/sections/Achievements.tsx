@@ -36,7 +36,7 @@ export function Achievements() {
           {achievementsData.map((achievement, i) => {
             const Icon = iconMap[achievement.icon] || Trophy;
             return (
-              <ScrollReveal key={i} delay={i * 0.08}>
+              <ScrollReveal key={i} delay={i * 0.08} className="h-full">
                 <GlowCard className="h-full">
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
