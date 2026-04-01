@@ -17,9 +17,22 @@ const config: Config = {
           glow: "rgba(16, 185, 129, 0.15)",
         },
         muted: "#a1a1aa",
+        bio: {
+          cream: "#FDF8F0",
+          card: "#FFFDF7",
+          gold: "#996515",
+          "gold-light": "#D4AF37",
+          "gold-muted": "#E8D5B7",
+          maroon: "#800020",
+          brown: "#3D2B1F",
+          "brown-light": "#6B5B4E",
+          saffron: "#FF9933",
+        },
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+        serif: ["Playfair Display", "Georgia", "Times New Roman", "serif"],
+        bio: ["Inter", "Noto Sans Devanagari", "system-ui", "sans-serif"],
         mono: ["JetBrains Mono", "Fira Code", "monospace"],
       },
       animation: {
