@@ -31,9 +31,14 @@ export interface BioContact {
   email: { label: string; value: string };
 }
 
+export interface BioGallery {
+  title: string;
+}
+
 export interface BioContent {
   header: BioHeader;
   sections: BioSection[];
+  gallery: BioGallery;
   contact: BioContact;
 }
 
@@ -175,6 +180,9 @@ export const bioDataContent: Record<Language, BioContent> = {
         ],
       },
     ],
+    gallery: {
+      title: "Photographs",
+    },
     contact: {
       title: "Contact Information",
       phone: { label: "Phone", value: "+91 95153 74137" },
@@ -318,6 +326,9 @@ export const bioDataContent: Record<Language, BioContent> = {
         ],
       },
     ],
+    gallery: {
+      title: "फ़ोटोग्राफ़",
+    },
     contact: {
       title: "संपर्क जानकारी",
       phone: { label: "फ़ोन", value: "+91 95153 74137" },

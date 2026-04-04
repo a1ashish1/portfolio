@@ -5,6 +5,7 @@ import { bioDataContent, type Language } from "@/data/bioDataContent";
 import { LanguageToggle } from "./LanguageToggle";
 import { OrnamentalDivider } from "./OrnamentalDivider";
 import { BioDataSection } from "./BioDataSection";
+import { PhotoGallery } from "./PhotoGallery";
 import { Mail, Phone } from "lucide-react";
 
 export function BioDataPage() {
@@ -47,6 +48,10 @@ export function BioDataPage() {
               </div>
             ))}
           </div>
+
+          {/* Photo Gallery */}
+          <OrnamentalDivider />
+          <PhotoGallery title={content.gallery.title} />
 
           {/* Contact Section */}
           <OrnamentalDivider />
