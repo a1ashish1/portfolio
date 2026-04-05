@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 };
 
 const photos = [
-  { src: "/assets/sis3.jpeg", alt: "Traditional portrait" },
-  { src: "/assets/sis2.jpeg", alt: "Casual portrait" },
+  { src: "/assets/sis3.jpeg?v=2", alt: "Traditional portrait" },
+  { src: "/assets/sis2.jpeg?v=2", alt: "Casual portrait" },
   { src: "/assets/sis1.jpeg", alt: "Academic project presentation" },
 ];
 
