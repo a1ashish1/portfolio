@@ -2,20 +2,17 @@
 
 import { useState } from "react";
 
-const photos = [
-  { src: "/assets/20260303_180857.jpg", alt: "At Udaipur lakeside" },
-  { src: "/assets/IMG-20260131-WA0048.jpg", alt: "Casual portrait" },
-  { src: "/assets/IMG-20251213-WA0013.jpeg", alt: "Traditional look" },
-  { src: "/assets/20241001_075506.jpg", alt: "At Pangong Lake" },
-  { src: "/assets/20241001_074829.jpg", alt: "Bike ride at Pangong Lake" },
-  { src: "/assets/20240929_113035.jpg", alt: "At Ladakh signpost" },
-];
+export interface PhotoItem {
+  src: string;
+  alt: string;
+}
 
 interface PhotoGalleryProps {
   title: string;
+  photos: PhotoItem[];
 }
 
-export function PhotoGallery({ title }: PhotoGalleryProps) {
+export function PhotoGallery({ title, photos }: PhotoGalleryProps) {
   const [selected, setSelected] = useState<number | null>(null);
 
   return (
@@ -41,7 +38,6 @@ export function PhotoGallery({ title }: PhotoGalleryProps) {
         ))}
       </div>
 
-      {/* Lightbox */}
       {selected !== null && (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 print:hidden"

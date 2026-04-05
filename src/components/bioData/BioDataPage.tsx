@@ -1,16 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { bioDataContent, type Language } from "@/data/bioDataContent";
+import { type Language, type BioContent } from "@/data/bioDataContent";
 import { LanguageToggle } from "./LanguageToggle";
 import { OrnamentalDivider } from "./OrnamentalDivider";
 import { BioDataSection } from "./BioDataSection";
-import { PhotoGallery } from "./PhotoGallery";
-import { Mail, Phone } from "lucide-react";
+import { PhotoGallery, type PhotoItem } from "./PhotoGallery";
+import { Mail, Phone, MapPin } from "lucide-react";
 
-export function BioDataPage() {
+interface BioDataPageProps {
+  contentRecord: Record<Language, BioContent>;
+  photos: PhotoItem[];
+}
+
+export function BioDataPage({ contentRecord, photos }: BioDataPageProps) {
   const [lang, setLang] = useState<Language>("en");
-  const content = bioDataContent[lang];
+  const content = contentRecord[lang];
 
   const toggleLang = () => setLang((prev) => (prev === "en" ? "hi" : "en"));
 
@@ -51,7 +56,7 @@ export function BioDataPage() {
 
           {/* Photo Gallery */}
           <OrnamentalDivider />
-          <PhotoGallery title={content.gallery.title} />
+          <PhotoGallery title={content.gallery.title} photos={photos} />
 
           {/* Contact Section */}
           <OrnamentalDivider />
@@ -74,20 +79,37 @@ export function BioDataPage() {
                   </span>
                 </span>
               </a>
-              <a
-                href={`mailto:${content.contact.email.value}`}
-                className="flex items-center gap-2.5 text-bio-brown hover:text-bio-maroon transition-colors group"
-              >
-                <Mail className="w-4 h-4 text-bio-gold group-hover:text-bio-maroon transition-colors" />
-                <span>
-                  <span className="text-bio-brown-light text-xs block leading-none mb-0.5">
-                    {content.contact.email.label}
+
+              {content.contact.email && (
+                <a
+                  href={`mailto:${content.contact.email.value}`}
+                  className="flex items-center gap-2.5 text-bio-brown hover:text-bio-maroon transition-colors group"
+                >
+                  <Mail className="w-4 h-4 text-bio-gold group-hover:text-bio-maroon transition-colors" />
+                  <span>
+                    <span className="text-bio-brown-light text-xs block leading-none mb-0.5">
+                      {content.contact.email.label}
+                    </span>
+                    <span className="font-medium text-sm sm:text-base">
+                      {content.contact.email.value}
+                    </span>
                   </span>
-                  <span className="font-medium text-sm sm:text-base">
-                    {content.contact.email.value}
+                </a>
+              )}
+
+              {content.contact.address && (
+                <div className="flex items-center gap-2.5 text-bio-brown">
+                  <MapPin className="w-4 h-4 text-bio-gold" />
+                  <span>
+                    <span className="text-bio-brown-light text-xs block leading-none mb-0.5">
+                      {content.contact.address.label}
+                    </span>
+                    <span className="font-medium text-sm sm:text-base">
+                      {content.contact.address.value}
+                    </span>
                   </span>
-                </span>
-              </a>
+                </div>
+              )}
             </div>
           </div>
 

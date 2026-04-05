@@ -28,7 +28,8 @@ export interface BioHeader {
 export interface BioContact {
   title: string;
   phone: { label: string; value: string };
-  email: { label: string; value: string };
+  email?: { label: string; value: string };
+  address?: { label: string; value: string };
 }
 
 export interface BioGallery {
