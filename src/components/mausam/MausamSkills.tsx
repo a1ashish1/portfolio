@@ -1,0 +1,43 @@
+"use client";
+
+import { mausamSkillsData } from "@/data/mausamContent";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+
+export function MausamSkills() {
+  return (
+    <section id="skills" className="py-24 md:py-32 relative">
+      <div className="absolute inset-0 dot-pattern opacity-20 pointer-events-none" />
+      <div className="section-container relative">
+        <SectionHeading
+          label="// skills"
+          title="Core Competencies"
+          description="Supply chain, program leadership, analytics, and engineering tools I use to deliver results."
+          accentClassName="text-sky-400"
+        />
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {mausamSkillsData.map((category, i) => (
+            <ScrollReveal key={category.name} delay={i * 0.08}>
+              <div className="bg-card border border-border rounded-xl p-5 h-full hover:border-sky-400/20 transition-colors duration-300">
+                <h3 className="font-mono text-sky-400 text-sm font-medium mb-4 tracking-wide">
+                  {category.name}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-2.5 py-1 text-xs text-zinc-400 bg-zinc-800/60 rounded-md border border-zinc-700/50 hover:text-sky-400 hover:border-sky-400/30 hover:bg-sky-400/5 transition-all duration-200 cursor-default"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

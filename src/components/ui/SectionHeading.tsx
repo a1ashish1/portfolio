@@ -7,9 +7,15 @@ interface SectionHeadingProps {
   label: string;
   title: string;
   description?: string;
+  accentClassName?: string;
 }
 
-export function SectionHeading({ label, title, description }: SectionHeadingProps) {
+export function SectionHeading({
+  label,
+  title,
+  description,
+  accentClassName = "text-accent",
+}: SectionHeadingProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -19,7 +25,7 @@ export function SectionHeading({ label, title, description }: SectionHeadingProp
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5 }}
-        className="font-mono text-accent text-sm mb-3 tracking-wider"
+        className={`font-mono text-sm mb-3 tracking-wider ${accentClassName}`}
       >
         {label}
       </motion.p>

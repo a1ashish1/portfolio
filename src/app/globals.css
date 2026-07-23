@@ -74,3 +74,9 @@
     mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
   }
 }
+
+.mausam-theme ::selection {
+  background-color: rgb(56 189 248 / 0.3);
+  color: white;
+}
+

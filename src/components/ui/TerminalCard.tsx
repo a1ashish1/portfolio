@@ -6,9 +6,16 @@ import { useRef, useState, useEffect } from "react";
 interface TerminalCardProps {
   command: string;
   output: string;
+  accentClassName?: string;
+  cursorClassName?: string;
 }
 
-export function TerminalCard({ command, output }: TerminalCardProps) {
+export function TerminalCard({
+  command,
+  output,
+  accentClassName = "text-accent",
+  cursorClassName = "bg-accent",
+}: TerminalCardProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [displayedCommand, setDisplayedCommand] = useState("");
@@ -49,11 +56,13 @@ export function TerminalCard({ command, output }: TerminalCardProps) {
         </div>
         <div className="p-4 font-mono text-sm leading-relaxed">
           <div className="flex items-center gap-2">
-            <span className="text-accent">~</span>
+            <span className={accentClassName}>~</span>
             <span className="text-muted">$</span>
             <span className="text-zinc-300">{displayedCommand}</span>
             {!showOutput && (
-              <span className="w-2 h-4 bg-accent animate-blink inline-block" />
+              <span
+                className={`w-2 h-4 animate-blink inline-block ${cursorClassName}`}
+              />
             )}
           </div>
           {showOutput && (
