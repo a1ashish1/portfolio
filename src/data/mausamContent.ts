@@ -4,7 +4,8 @@ export const mausamSiteConfig = {
   email: "mausamsinha20@gmail.com",
   phone: "+91 62019 64258",
   location: "Baddi, Himachal Pradesh, India",
-  resumeUrl: "https://www.linkedin.com/in/mausam-sinha-iitkgp/",
+  resumeUrl:
+    "https://drive.google.com/file/d/1g8kNt8Q_4vUJ4CrMRyuqxwU2RWG95mx7/view?usp=sharing",
   social: {
     linkedin: "https://www.linkedin.com/in/mausam-sinha-iitkgp/",
   },
@@ -18,8 +19,8 @@ export const mausamHeroData = {
   tagline:
     "IIT Kharagpur Chemical Engineer driving plant-level production planning, process excellence, and multimillion-dollar savings at Procter & Gamble. I turn complex operations into reliable, data-backed systems.",
   cta: {
-    primary: { label: "Get in Touch", href: "#contact" },
-    secondary: { label: "View Experience", href: "#experience" },
+    primary: { label: "Download Resume" },
+    secondary: { label: "Get in Touch", href: "#contact" },
   },
   terminal: {
     command: "cat profile.json",

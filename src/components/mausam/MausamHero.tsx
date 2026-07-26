@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Briefcase, Mail } from "lucide-react";
-import { mausamHeroData } from "@/data/mausamContent";
+import { ArrowDown, FileText, Mail } from "lucide-react";
+import { mausamHeroData, mausamSiteConfig } from "@/data/mausamContent";
 import { TerminalCard } from "@/components/ui/TerminalCard";
 
 const stagger = {
@@ -76,17 +76,19 @@ export function MausamHero() {
 
             <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
               <a
-                href={mausamHeroData.cta.primary.href}
+                href={mausamSiteConfig.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-sky-400 text-background font-medium rounded-lg hover:bg-sky-300 transition-colors duration-200"
               >
-                <Mail className="w-4 h-4" />
+                <FileText className="w-4 h-4" />
                 {mausamHeroData.cta.primary.label}
               </a>
               <a
                 href={mausamHeroData.cta.secondary.href}
                 className="inline-flex items-center gap-2 px-6 py-3 border border-border text-zinc-300 font-medium rounded-lg hover:border-sky-400/50 hover:text-sky-400 transition-colors duration-200"
               >
-                <Briefcase className="w-4 h-4" />
+                <Mail className="w-4 h-4" />
                 {mausamHeroData.cta.secondary.label}
               </a>
             </motion.div>

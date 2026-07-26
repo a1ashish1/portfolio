@@ -88,12 +88,12 @@ export function MausamContact() {
               Say Hello
             </a>
             <a
-              href={mausamSiteConfig.social.linkedin}
+              href={mausamSiteConfig.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 border border-border text-zinc-300 font-medium rounded-lg hover:border-sky-400/50 hover:text-sky-400 transition-colors duration-200"
             >
-              View LinkedIn
+              View Resume
               <ExternalLink className="w-4 h-4" />
             </a>
           </div>
