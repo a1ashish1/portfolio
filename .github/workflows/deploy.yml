@@ -25,7 +25,14 @@ jobs:
           cache: npm
 
       - run: npm ci
-      - run: npm run build
+      # Pulls latest PDF text from siteConfig.resumeUrl into src/data/resume.generated.ts
+      # so Ask Ashish stays current whenever the Drive file or link changes.
+      - name: Sync resume from Google Drive
+        run: npm run sync:resume
+      - name: Build
+        env:
+          NEXT_PUBLIC_GEMINI_API_KEY: ${{ secrets.NEXT_PUBLIC_GEMINI_API_KEY }}
+        run: npm run build
 
       - uses: actions/upload-pages-artifact@v3
         with:

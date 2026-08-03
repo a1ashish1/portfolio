@@ -4,6 +4,13 @@ export const siteConfig = {
   email: "ycsashish120@gmail.com",
   phone: "+91 9515374137",
   location: "India",
+  /**
+   * Ask Ashish resume source of truth.
+   * - Keep this Google Drive file shared as "Anyone with the link".
+   * - Same Drive file replaced in place → just push; CI runs `npm run sync:resume`.
+   * - New Drive link → update this URL, then push (or run `npm run sync:resume` locally).
+   * - Never hand-edit `src/data/resume.generated.ts`; it is auto-generated.
+   */
   resumeUrl:
     "https://drive.google.com/file/d/1mzDx5Hy-eA4vh61iclv7hoRIEI0ZtMna/view",
   social: {

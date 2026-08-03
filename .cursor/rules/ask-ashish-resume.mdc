@@ -1,0 +1,17 @@
+---
+description: Keep Ask Ashish resume knowledge in sync with Google Drive
+globs: src/data/content.ts,src/data/knowledgeBase.ts,src/data/resume.generated.ts,scripts/sync-resume.mts,.github/workflows/deploy.yml
+alwaysApply: false
+---
+
+# Ask Ashish — resume sync
+
+When the user changes Ashish’s resume or `siteConfig.resumeUrl`:
+
+1. Update `resumeUrl` in `src/data/content.ts` if the Drive link changed.
+2. Ensure the Drive file is shared as **Anyone with the link**.
+3. Run `npm run sync:resume` (regenerates `src/data/resume.generated.ts`).
+4. Do **not** hand-edit `resume.generated.ts`.
+5. Remind them that pushing to `main` also runs `sync:resume` in GitHub Actions before build — so a resume-link change + push is enough for production.
+
+Never commit `.env.local` or paste API keys into tracked files. Production needs GitHub secret `NEXT_PUBLIC_GEMINI_API_KEY`.
