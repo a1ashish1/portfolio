@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { navLinks, siteConfig } from "@/data/content";
@@ -36,16 +36,45 @@ export function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
+  // The menu is a compact dropdown, so it deliberately does not lock page
+  // scrolling: locking via body overflow blocked scrolling outright on some
+  // mobile browsers and could leave the page frozen if it was never released.
+  const closeMobileMenu = useCallback(() => setMobileOpen(false), []);
+
+  /**
+   * Scroll explicitly instead of relying on native hash navigation, which
+   * mobile browsers can drop while the menu is still closing.
+   */
+  const handleSectionLink = useCallback(
+    (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      if (!href.startsWith("#")) return;
+
+      const target = document.getElementById(href.slice(1));
+      if (!target) return;
+
+      event.preventDefault();
+      closeMobileMenu();
+
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      requestAnimationFrame(() => {
+        const headerOffset = 80;
+        const top = Math.max(
+          0,
+          target.getBoundingClientRect().top + window.scrollY - headerOffset
+        );
+
+        window.scrollTo({
+          top,
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+        });
+        window.history.replaceState(null, "", href);
+      });
+    },
+    [closeMobileMenu]
+  );
 
   return (
     <motion.header
@@ -63,6 +92,7 @@ export function Navbar() {
         <div className="flex items-center gap-4">
           <a
             href="#home"
+            onClick={(e) => handleSectionLink(e, "#home")}
             className="font-mono text-lg font-semibold text-foreground hover:text-accent transition-colors"
           >
             {siteConfig.name.split(" ")[0].toLowerCase()}
@@ -78,6 +108,7 @@ export function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
+                onClick={(e) => handleSectionLink(e, link.href)}
                 className={cn(
                   "px-3 py-2 text-sm font-medium rounded-md transition-colors duration-200",
                   activeSection === link.href
@@ -134,7 +165,7 @@ export function Navbar() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    onClick={() => setMobileOpen(false)}
+                    onClick={(e) => handleSectionLink(e, link.href)}
                     className={cn(
                       "block px-4 py-3 text-sm font-medium rounded-lg transition-colors",
                       activeSection === link.href
@@ -151,7 +182,7 @@ export function Navbar() {
                   href={siteConfig.resumeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={closeMobileMenu}
                   className="block px-4 py-3 text-sm font-medium text-accent border border-accent/40 rounded-lg text-center hover:bg-accent/10 transition-colors"
                 >
                   Resume

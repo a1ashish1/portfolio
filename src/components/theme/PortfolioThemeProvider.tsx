@@ -59,7 +59,8 @@ export function PortfolioThemeProvider({ children }: { children: ReactNode }) {
 
   return (
     <ThemeContext.Provider value={value}>
-      <div className="portfolio-theme min-h-screen bg-background text-foreground">
+      {/* isolate keeps the fixed -z-10 background layer above this wrapper's own background */}
+      <div className="portfolio-theme isolate min-h-screen bg-background text-foreground">
         {children}
       </div>
     </ThemeContext.Provider>
