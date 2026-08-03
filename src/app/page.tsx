@@ -10,10 +10,11 @@ import { Skills } from "@/components/sections/Skills";
 import { Achievements } from "@/components/sections/Achievements";
 import { Contact } from "@/components/sections/Contact";
 import { AskAshish } from "@/components/chat/AskAshish";
+import { PortfolioThemeProvider } from "@/components/theme/PortfolioThemeProvider";
 
 export default function Home() {
   return (
-    <>
+    <PortfolioThemeProvider>
       <GridBackground />
       <Navbar />
       <main>
@@ -26,6 +27,6 @@ export default function Home() {
       </main>
       <Footer />
       <AskAshish />
-    </>
+    </PortfolioThemeProvider>
   );
 }

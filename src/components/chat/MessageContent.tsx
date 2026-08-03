@@ -82,7 +82,7 @@ function renderInline(line: string): ReactNode {
         );
       case "bold":
         return (
-          <strong key={i} className="font-semibold text-zinc-100">
+          <strong key={i} className="font-semibold text-foreground">
             {token.text}
           </strong>
         );

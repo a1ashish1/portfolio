@@ -43,7 +43,7 @@ export function Achievements() {
                       <Icon className="w-5 h-5 text-accent" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-zinc-100 mb-1">
+                      <h3 className="font-semibold text-foreground mb-1">
                         {achievement.title}
                       </h3>
                       <p className="text-sm text-muted leading-relaxed">

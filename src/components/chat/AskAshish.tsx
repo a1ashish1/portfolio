@@ -106,7 +106,7 @@ export function AskAshish() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.96 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="flex h-[min(560px,calc(100dvh-6.5rem))] w-[min(100vw-1.5rem,380px)] flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl shadow-black/50"
+            className="flex h-[min(560px,calc(100dvh-6.5rem))] w-[min(100vw-1.5rem,380px)] flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl shadow-[var(--pf-shadow)]"
           >
             <header className="flex items-start justify-between gap-3 border-b border-border bg-card/80 px-4 py-3.5 backdrop-blur-sm">
               <div className="flex min-w-0 items-start gap-3">
@@ -116,7 +116,7 @@ export function AskAshish() {
                 <div className="min-w-0">
                   <h2
                     id={titleId}
-                    className="text-sm font-semibold tracking-tight text-zinc-100"
+                    className="text-sm font-semibold tracking-tight text-foreground"
                   >
                     Ask Ashish
                   </h2>
@@ -128,7 +128,7 @@ export function AskAshish() {
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="rounded-lg p-1.5 text-muted transition-colors hover:bg-zinc-800 hover:text-zinc-200"
+                className="rounded-lg p-1.5 text-muted transition-colors hover:bg-[var(--pf-soft-hover)] hover:text-foreground"
                 aria-label="Close chat"
               >
                 <X className="h-4 w-4" />
@@ -151,8 +151,8 @@ export function AskAshish() {
                     className={cn(
                       "max-w-[92%] rounded-2xl px-3.5 py-2.5 text-[13px] leading-relaxed",
                       m.role === "user"
-                        ? "rounded-br-md bg-accent text-background"
-                        : "rounded-bl-md border border-border bg-card text-zinc-300"
+                        ? "rounded-br-md bg-accent text-accent-foreground"
+                        : "rounded-bl-md border border-border bg-card text-foreground-secondary"
                     )}
                   >
                     <MessageContent text={m.content} />
@@ -180,7 +180,7 @@ export function AskAshish() {
                       key={prompt}
                       type="button"
                       onClick={() => void send(prompt)}
-                      className="rounded-full border border-border bg-card/60 px-3 py-1.5 text-left text-[11px] text-zinc-400 transition-colors hover:border-accent/35 hover:text-accent-light"
+                      className="rounded-full border border-border bg-card/60 px-3 py-1.5 text-left text-[11px] text-foreground-tertiary transition-colors hover:border-accent/35 hover:text-accent"
                     >
                       {prompt}
                     </button>
@@ -203,19 +203,19 @@ export function AskAshish() {
                   maxLength={500}
                   placeholder="Ask about experience, skills…"
                   disabled={busy}
-                  className="max-h-24 min-h-[36px] flex-1 resize-none bg-transparent px-1 py-1.5 text-[13px] text-zinc-200 outline-none placeholder:text-zinc-600"
+                  className="max-h-24 min-h-[36px] flex-1 resize-none bg-transparent px-1 py-1.5 text-[13px] text-foreground-secondary outline-none placeholder:text-[var(--pf-subtle-text)]"
                   aria-label="Message"
                 />
                 <button
                   type="submit"
                   disabled={busy || !input.trim()}
-                  className="mb-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent text-background transition-opacity hover:bg-accent-light disabled:opacity-40"
+                  className="mb-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-opacity hover:bg-accent-light disabled:opacity-40"
                   aria-label="Send message"
                 >
                   <Send className="h-3.5 w-3.5" />
                 </button>
               </div>
-              <p className="mt-2 px-0.5 text-[10px] leading-snug text-zinc-600">
+              <p className="mt-2 px-0.5 text-[10px] leading-snug text-[var(--pf-subtle-text)]">
                 Grounded in portfolio content. Unverified topics redirect to
                 contact.
               </p>
@@ -230,9 +230,9 @@ export function AskAshish() {
         whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.96 }}
         className={cn(
-          "flex h-12 items-center gap-2.5 rounded-full border border-accent/30 bg-accent px-4 text-sm font-medium text-background shadow-lg shadow-accent/20 transition-colors hover:bg-accent-light",
+          "flex h-12 items-center gap-2.5 rounded-full border border-accent/30 bg-accent px-4 text-sm font-medium text-accent-foreground shadow-lg shadow-accent/20 transition-colors hover:bg-accent-light",
           open &&
-            "border-border bg-card text-zinc-200 shadow-black/40 hover:bg-zinc-800"
+            "border-border bg-card text-foreground-secondary shadow-[var(--pf-shadow)] hover:bg-[var(--pf-soft-hover)]"
         )}
         aria-expanded={open}
         aria-label={open ? "Close Ask Ashish" : "Open Ask Ashish"}

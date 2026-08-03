@@ -37,13 +37,34 @@ export const metadata: Metadata = {
   },
 };
 
+const portfolioThemeScript = `
+(function () {
+  try {
+    var isPortfolio = window.location.pathname === "/" ||
+      window.location.pathname === "/index.html";
+    if (!isPortfolio) {
+      document.documentElement.removeAttribute("data-portfolio-theme");
+      return;
+    }
+    var theme = localStorage.getItem("ashish-portfolio-theme");
+    if (theme !== "light" && theme !== "dark") theme = "dark";
+    document.documentElement.setAttribute("data-portfolio-theme", theme);
+  } catch (_) {
+    document.documentElement.setAttribute("data-portfolio-theme", "dark");
+  }
+})();
+`;
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: portfolioThemeScript }} />
+      </head>
       <body>{children}</body>
     </html>
   );

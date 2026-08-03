@@ -5,18 +5,25 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#09090b",
-        surface: "#111113",
-        card: "#18181b",
-        border: "#27272a",
-        "border-light": "#3f3f46",
+        background: "var(--pf-background, #09090b)",
+        surface: "var(--pf-surface, #111113)",
+        card: "var(--pf-card, #18181b)",
+        border: "var(--pf-border, #27272a)",
+        "border-light": "var(--pf-border-light, #3f3f46)",
+        foreground: "var(--pf-foreground, #fafafa)",
+        "foreground-secondary": "var(--pf-foreground-secondary, #d4d4d8)",
+        "foreground-tertiary": "var(--pf-foreground-tertiary, #a1a1aa)",
+        "accent-foreground": "var(--pf-accent-foreground, #052e16)",
         accent: {
-          DEFAULT: "#10b981",
-          light: "#34d399",
-          dark: "#059669",
+          DEFAULT:
+            "rgb(var(--pf-accent-rgb, 16 185 129) / <alpha-value>)",
+          light:
+            "rgb(var(--pf-accent-light-rgb, 52 211 153) / <alpha-value>)",
+          dark:
+            "rgb(var(--pf-accent-dark-rgb, 5 150 105) / <alpha-value>)",
           glow: "rgba(16, 185, 129, 0.15)",
         },
-        muted: "#a1a1aa",
+        muted: "var(--pf-muted, #a1a1aa)",
         bio: {
           cream: "#FDF8F0",
           card: "#FFFDF7",

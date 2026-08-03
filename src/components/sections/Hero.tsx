@@ -47,7 +47,7 @@ export function Hero() {
 
             <motion.h1
               variants={fadeUp}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-zinc-50 mb-4 tracking-tight"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-tight"
             >
               {heroData.name}
               <span className="text-accent">.</span>
@@ -55,7 +55,7 @@ export function Hero() {
 
             <motion.h2
               variants={fadeUp}
-              className="text-2xl sm:text-3xl md:text-4xl font-semibold text-zinc-400 mb-6"
+              className="text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground-tertiary mb-6"
             >
               {heroData.title}
             </motion.h2>
@@ -72,14 +72,14 @@ export function Hero() {
                 href={heroData.cta.primary.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-background font-medium rounded-lg hover:bg-accent-light transition-colors duration-200"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-accent-foreground font-medium rounded-lg hover:bg-accent-light transition-colors duration-200"
               >
                 <FileText className="w-4 h-4" />
                 {heroData.cta.primary.label}
               </a>
               <a
                 href={heroData.cta.secondary.href}
-                className="inline-flex items-center gap-2 px-6 py-3 border border-border text-zinc-300 font-medium rounded-lg hover:border-accent/50 hover:text-accent transition-colors duration-200"
+                className="inline-flex items-center gap-2 px-6 py-3 border border-border text-foreground-secondary font-medium rounded-lg hover:border-accent/50 hover:text-accent transition-colors duration-200"
               >
                 <Mail className="w-4 h-4" />
                 {heroData.cta.secondary.label}

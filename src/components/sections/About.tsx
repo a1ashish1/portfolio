@@ -14,7 +14,7 @@ export function About() {
           <div className="lg:col-span-3 space-y-5">
             {aboutData.paragraphs.map((paragraph, i) => (
               <ScrollReveal key={i} delay={i * 0.1}>
-                <p className="text-zinc-400 text-base md:text-lg leading-relaxed">
+                <p className="text-foreground-tertiary text-base md:text-lg leading-relaxed">
                   {paragraph}
                 </p>
               </ScrollReveal>

@@ -16,6 +16,9 @@
 
   body {
     @apply bg-background text-zinc-100 font-sans antialiased;
+    transition:
+      background-color 220ms ease,
+      color 220ms ease;
   }
 
   ::selection {
@@ -35,6 +38,84 @@
   }
 }
 
+/*
+ * Main portfolio theme tokens. They are scoped to .portfolio-theme so the
+ * Mausam, bio-data, and game routes keep their existing palettes.
+ */
+.portfolio-theme {
+  --pf-background: #09090b;
+  --pf-surface: #111113;
+  --pf-card: #18181b;
+  --pf-border: #27272a;
+  --pf-border-light: #3f3f46;
+  --pf-foreground: #fafafa;
+  --pf-foreground-secondary: #d4d4d8;
+  --pf-foreground-tertiary: #a1a1aa;
+  --pf-muted: #a1a1aa;
+  --pf-accent-rgb: 16 185 129;
+  --pf-accent-light-rgb: 52 211 153;
+  --pf-accent-dark-rgb: 5 150 105;
+  --pf-accent-foreground: #052e16;
+  --pf-pill-background: rgb(39 39 42 / 0.6);
+  --pf-pill-border: rgb(63 63 70 / 0.5);
+  --pf-terminal-background: #0c0c0e;
+  --pf-terminal-header: #111113;
+  --pf-pattern-dot: rgb(161 161 170 / 0.12);
+  --pf-pattern-grid: rgb(39 39 42 / 0.4);
+  --pf-soft-hover: rgb(39 39 42 / 0.5);
+  --pf-subtle-text: #52525b;
+  --pf-shadow: rgb(0 0 0 / 0.5);
+  --pf-ambient: rgb(6 78 59 / 0.05);
+  color-scheme: dark;
+  transition:
+    background-color 220ms ease,
+    color 220ms ease;
+}
+
+html[data-portfolio-theme="light"] {
+  background-color: #fafafa;
+  color-scheme: light;
+}
+
+html[data-portfolio-theme="light"] body {
+  background-color: #fafafa;
+}
+
+html[data-portfolio-theme="light"] .portfolio-theme {
+  --pf-background: #fafafa;
+  --pf-surface: #ffffff;
+  --pf-card: #ffffff;
+  --pf-border: #e4e4e7;
+  --pf-border-light: #d4d4d8;
+  --pf-foreground: #18181b;
+  --pf-foreground-secondary: #3f3f46;
+  --pf-foreground-tertiary: #52525b;
+  --pf-muted: #71717a;
+  --pf-accent-rgb: 4 120 87;
+  --pf-accent-light-rgb: 5 150 105;
+  --pf-accent-dark-rgb: 6 95 70;
+  --pf-accent-foreground: #ffffff;
+  --pf-pill-background: rgb(244 244 245 / 0.9);
+  --pf-pill-border: rgb(212 212 216 / 0.75);
+  --pf-terminal-background: #ffffff;
+  --pf-terminal-header: #f4f4f5;
+  --pf-pattern-dot: rgb(113 113 122 / 0.16);
+  --pf-pattern-grid: rgb(212 212 216 / 0.55);
+  --pf-soft-hover: rgb(244 244 245 / 0.9);
+  --pf-subtle-text: #71717a;
+  --pf-shadow: rgb(24 24 27 / 0.12);
+  --pf-ambient: rgb(16 185 129 / 0.08);
+  color-scheme: light;
+}
+
+html[data-portfolio-theme="light"] ::-webkit-scrollbar-track {
+  background: #fafafa;
+}
+
+html[data-portfolio-theme="light"] ::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+}
+
 @layer components {
   .section-container {
     @apply max-w-5xl mx-auto px-6 sm:px-8 lg:px-10;
@@ -49,14 +130,25 @@
   }
 
   .dot-pattern {
-    background-image: radial-gradient(circle, rgba(161, 161, 170, 0.12) 1px, transparent 1px);
+    background-image: radial-gradient(
+      circle,
+      var(--pf-pattern-dot, rgba(161, 161, 170, 0.12)) 1px,
+      transparent 1px
+    );
     background-size: 24px 24px;
   }
 
   .grid-pattern {
     background-image:
-      linear-gradient(rgba(39, 39, 42, 0.4) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(39, 39, 42, 0.4) 1px, transparent 1px);
+      linear-gradient(
+        var(--pf-pattern-grid, rgba(39, 39, 42, 0.4)) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        var(--pf-pattern-grid, rgba(39, 39, 42, 0.4)) 1px,
+        transparent 1px
+      );
     background-size: 60px 60px;
   }
 }

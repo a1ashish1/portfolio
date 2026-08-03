@@ -38,7 +38,7 @@ export function Footer() {
             <span className="mx-2 text-border">·</span>
             <span>
               Built by{" "}
-              <span className="text-zinc-300">{siteConfig.name}</span>
+              <span className="text-foreground-secondary">{siteConfig.name}</span>
             </span>
           </div>
 

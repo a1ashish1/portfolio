@@ -28,7 +28,7 @@ export function Contact() {
                 </div>
                 <div className="flex-1">
                   <p className="text-xs text-muted font-mono mb-0.5">Email</p>
-                  <p className="text-zinc-200 group-hover:text-accent-light transition-colors">
+                  <p className="text-foreground-secondary group-hover:text-accent transition-colors">
                     {siteConfig.email}
                   </p>
                 </div>
@@ -48,7 +48,7 @@ export function Contact() {
                   <p className="text-xs text-muted font-mono mb-0.5">
                     LinkedIn
                   </p>
-                  <p className="text-zinc-200 group-hover:text-accent-light transition-colors">
+                  <p className="text-foreground-secondary group-hover:text-accent transition-colors">
                     linkedin.com/in/a1ashish1
                   </p>
                 </div>
@@ -59,7 +59,7 @@ export function Contact() {
             <div className="flex items-center gap-3">
               <a
                 href={`mailto:${siteConfig.email}`}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-background font-medium rounded-lg hover:bg-accent-light transition-colors duration-200"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-accent-foreground font-medium rounded-lg hover:bg-accent-light transition-colors duration-200"
               >
                 <Mail className="w-4 h-4" />
                 Say Hello
@@ -68,7 +68,7 @@ export function Contact() {
                 href={siteConfig.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 border border-border text-zinc-300 font-medium rounded-lg hover:border-accent/50 hover:text-accent transition-colors duration-200"
+                className="inline-flex items-center gap-2 px-6 py-3 border border-border text-foreground-secondary font-medium rounded-lg hover:border-accent/50 hover:text-accent transition-colors duration-200"
               >
                 View Resume
                 <ExternalLink className="w-4 h-4" />

@@ -29,7 +29,7 @@ export function Experience() {
                   <div className="flex-1 bg-card border border-border rounded-xl p-6 md:p-8 hover:border-accent/20 transition-colors duration-300 group">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
                       <div>
-                        <h3 className="text-lg md:text-xl font-semibold text-zinc-100 group-hover:text-accent-light transition-colors">
+                        <h3 className="text-lg md:text-xl font-semibold text-foreground group-hover:text-accent transition-colors">
                           {item.role}
                         </h3>
                         <p className="text-accent font-medium">
@@ -45,7 +45,7 @@ export function Experience() {
                       {item.bullets.map((bullet, j) => (
                         <li
                           key={j}
-                          className="flex gap-3 text-zinc-400 text-sm md:text-base leading-relaxed"
+                          className="flex gap-3 text-foreground-tertiary text-sm md:text-base leading-relaxed"
                         >
                           <span className="text-accent mt-1.5 flex-shrink-0">
                             ▹

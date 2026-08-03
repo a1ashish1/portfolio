@@ -47,8 +47,8 @@ export function TerminalCard({
       transition={{ duration: 0.6, delay: 0.4 }}
       className="w-full max-w-md"
     >
-      <div className="rounded-lg border border-border bg-[#0c0c0e] overflow-hidden shadow-2xl">
-        <div className="flex items-center gap-2 px-4 py-3 bg-[#111113] border-b border-border">
+      <div className="rounded-lg border border-border bg-[var(--pf-terminal-background,#0c0c0e)] overflow-hidden shadow-2xl shadow-[var(--pf-shadow,rgba(0,0,0,0.5))]">
+        <div className="flex items-center gap-2 px-4 py-3 bg-[var(--pf-terminal-header,#111113)] border-b border-border">
           <div className="w-3 h-3 rounded-full bg-red-500/80" />
           <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
           <div className="w-3 h-3 rounded-full bg-green-500/80" />
@@ -58,7 +58,7 @@ export function TerminalCard({
           <div className="flex items-center gap-2">
             <span className={accentClassName}>~</span>
             <span className="text-muted">$</span>
-            <span className="text-zinc-300">{displayedCommand}</span>
+            <span className="text-foreground-secondary">{displayedCommand}</span>
             {!showOutput && (
               <span
                 className={`w-2 h-4 animate-blink inline-block ${cursorClassName}`}
@@ -70,7 +70,7 @@ export function TerminalCard({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4 }}
-              className="mt-3 text-zinc-400 whitespace-pre text-xs sm:text-sm overflow-x-auto"
+              className="mt-3 text-foreground-tertiary whitespace-pre text-xs sm:text-sm overflow-x-auto"
             >
               {output}
             </motion.pre>

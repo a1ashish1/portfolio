@@ -26,7 +26,7 @@ export function Skills() {
                   {category.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-2.5 py-1 text-xs text-zinc-400 bg-zinc-800/60 rounded-md border border-zinc-700/50 hover:text-accent hover:border-accent/30 hover:bg-accent/5 transition-all duration-200 cursor-default"
+                      className="px-2.5 py-1 text-xs text-foreground-tertiary bg-[var(--pf-pill-background)] rounded-md border border-[var(--pf-pill-border)] hover:text-accent hover:border-accent/30 hover:bg-accent/5 transition-all duration-200 cursor-default"
                     >
                       {skill}
                     </span>

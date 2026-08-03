@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import { navLinks, siteConfig } from "@/data/content";
 import { cn } from "@/lib/utils";
 import { VisitorCounter } from "@/components/ui/VisitorCounter";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -62,7 +63,7 @@ export function Navbar() {
         <div className="flex items-center gap-4">
           <a
             href="#home"
-            className="font-mono text-lg font-semibold text-zinc-100 hover:text-accent transition-colors"
+            className="font-mono text-lg font-semibold text-foreground hover:text-accent transition-colors"
           >
             {siteConfig.name.split(" ")[0].toLowerCase()}
             <span className="text-accent">.</span>
@@ -81,13 +82,16 @@ export function Navbar() {
                   "px-3 py-2 text-sm font-medium rounded-md transition-colors duration-200",
                   activeSection === link.href
                     ? "text-accent bg-accent/10"
-                    : "text-muted hover:text-zinc-100 hover:bg-zinc-800/50"
+                    : "text-muted hover:text-foreground hover:bg-[var(--pf-soft-hover)]"
                 )}
               >
                 {link.label}
               </a>
             </li>
           ))}
+          <li className="ml-2">
+            <ThemeToggle />
+          </li>
           <li className="ml-3">
             <a
               href={siteConfig.resumeUrl}
@@ -100,13 +104,20 @@ export function Navbar() {
           </li>
         </ul>
 
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden p-2 text-zinc-300 hover:text-accent transition-colors"
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="p-2 text-foreground-secondary hover:text-accent transition-colors"
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -128,7 +139,7 @@ export function Navbar() {
                       "block px-4 py-3 text-sm font-medium rounded-lg transition-colors",
                       activeSection === link.href
                         ? "text-accent bg-accent/10"
-                        : "text-muted hover:text-zinc-100 hover:bg-zinc-800/50"
+                        : "text-muted hover:text-foreground hover:bg-[var(--pf-soft-hover)]"
                     )}
                   >
                     {link.label}
