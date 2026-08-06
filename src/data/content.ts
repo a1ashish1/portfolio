@@ -12,7 +12,7 @@ export const siteConfig = {
    * - Never hand-edit `src/data/resume.generated.ts`; it is auto-generated.
    */
   resumeUrl:
-    "https://drive.google.com/file/d/1mzDx5Hy-eA4vh61iclv7hoRIEI0ZtMna/view",
+    "https://drive.google.com/file/d/1ghgDeUVAHwDjLdi_OP8Ms_f6MmvHQLQu/view",
   social: {
     linkedin: "https://www.linkedin.com/in/a1ashish1/",
     leetcode: "https://leetcode.com/a1ashish1",
