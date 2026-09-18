@@ -319,7 +319,9 @@ function MoonBadge() {
 }
 
 function Hero({ onBurst }: { onBurst: (e: React.MouseEvent<HTMLElement>) => void }) {
-  const letters = "WHY P&G WHY?".split("");
+  // Grouped per word so narrow phones wrap between words, never mid-word.
+  const words = ["WHY", "P&G", "WHY?"];
+  let letterIndex = 0;
 
   return (
     <header className="text-center">
@@ -329,25 +331,28 @@ function Hero({ onBurst }: { onBurst: (e: React.MouseEvent<HTMLElement>) => void
         Ek shaanti-purn protest · one man · one cold dinner
       </p>
 
-      <h1 className="mb-4 flex flex-wrap justify-center gap-x-1 text-[2.4rem] font-black leading-none tracking-tight sm:text-6xl md:text-7xl">
-        {letters.map((ch, i) => (
-          <motion.span
-            key={`${ch}-${i}`}
-            animate={{ y: [0, -9, 0], rotate: [0, i % 2 ? 4 : -4, 0] }}
-            transition={{
-              duration: 2.2,
-              delay: i * 0.06,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className={
-              ch === " "
-                ? "w-3"
-                : "bg-gradient-to-b from-white via-sky-100 to-pink-200 bg-clip-text text-transparent drop-shadow-[0_6px_18px_rgba(255,255,255,0.28)]"
-            }
-          >
-            {ch === " " ? "\u00A0" : ch}
-          </motion.span>
+      <h1 className="mb-4 flex flex-wrap justify-center gap-x-3 text-[2rem] font-black leading-none tracking-tight sm:text-6xl md:text-7xl">
+        {words.map((word) => (
+          <span key={word} className="inline-flex whitespace-nowrap">
+            {word.split("").map((ch, i) => {
+              const delay = letterIndex++ * 0.06;
+              return (
+                <motion.span
+                  key={`${word}-${ch}-${i}`}
+                  animate={{ y: [0, -9, 0], rotate: [0, i % 2 ? 4 : -4, 0] }}
+                  transition={{
+                    duration: 2.2,
+                    delay,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="bg-gradient-to-b from-white via-sky-100 to-pink-200 bg-clip-text text-transparent drop-shadow-[0_6px_18px_rgba(255,255,255,0.28)]"
+                >
+                  {ch}
+                </motion.span>
+              );
+            })}
+          </span>
         ))}
       </h1>
 
