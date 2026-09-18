@@ -11,6 +11,8 @@ import {
   Moon,
   Music2,
   PartyPopper,
+  Pause,
+  Play,
   Send,
   Sparkles,
   Stamp,
@@ -102,36 +104,42 @@ const SONGS = [
     song: "Inteha Ho Gayi Intezaar Ki",
     credit: "Sharaabi · 1984 · Kishore & Asha",
     quip: "Gaana 1984 ka hai. Intezaar ka OEE tab se same hai. 📉",
+    videoId: "Pf2n4MFgIao",
   },
   {
     lyric: "Din dhal jaaye, haaye…\nraat na jaaye 🌙",
     song: "Din Dhal Jaaye",
     credit: "Guide · 1965 · Rafi",
     quip: "Din dhal gaya. Shift nahi dhali.",
+    videoId: "73EKE3lhUt0",
   },
   {
     lyric: "Aaj jaane ki zid na karo…\nyunhi pehlu mein baithe raho 🥺",
     song: "Aaj Jaane Ki Zid Na Karo",
     credit: "Farida Khanum · ghazal",
     quip: "Roz subah 8 baje ye bajata hoon. Roz woh nikal jaati hai. 🚗",
+    videoId: "KDJL2FyRDeA",
   },
   {
     lyric: "Mausam hai aashiqana…\nae dil kahin se unko aise mein dhoondh laana 💘",
     song: "Mausam Hai Aashiqana",
     credit: "Pakeezah · 1972 · Lata",
     quip: "Naam bhi Mausam. Aur forecast bhi wahi: “late”. ⛈️",
+    videoId: "o4F2mwtjweo",
   },
   {
     lyric: "O saathi re…\ntere bina bhi kya jeena 💔",
     song: "O Saathi Re",
     credit: "Muqaddar Ka Sikandar · 1978 · Kishore",
     quip: "Tere bina kya jeena — par tere office ke bina bilkul jee lenge. 😤",
+    videoId: "EkDtRsNRTjA",
   },
   {
     lyric: "Pal pal dil ke paas…\ntum rehti ho ❤️",
     song: "Pal Pal Dil Ke Paas",
     credit: "Blackmail · 1973 · Kishore",
     quip: "Pal pal dil ke paas… aur 9 se 9 Baddi plant ke paas. 🏭",
+    videoId: "AMuRRXCuy-4",
   },
 ];
 
@@ -158,8 +166,25 @@ function pad(n: number) {
 
 export function WhyPngWhyPage() {
   const [bursts, setBursts] = useState<Burst[]>([]);
-  const [nowPlaying, setNowPlaying] = useState<number | null>(null);
+  const [songInView, setSongInView] = useState<number | null>(null);
+  // Only one embed is mounted at a time, so starting a song stops the last one.
+  const [playingSong, setPlayingSong] = useState<number | null>(null);
   const timeouts = useRef<number[]>([]);
+
+  const togglePlay = useCallback((i: number) => {
+    setPlayingSong((current) => (current === i ? null : i));
+  }, []);
+
+  // A plain factory, not a nested component: keeps SongBreak's element type
+  // stable so the playing iframe is never remounted.
+  const Song = (index: number) => (
+    <SongBreak
+      index={index}
+      onInView={setSongInView}
+      isPlaying={playingSong === index}
+      onTogglePlay={togglePlay}
+    />
+  );
 
   useEffect(
     () => () => {
@@ -215,22 +240,22 @@ export function WhyPngWhyPage() {
       <main className="relative z-10 mx-auto w-full max-w-4xl px-4 pb-24 pt-10 sm:px-6 sm:pt-14">
         <Hero onBurst={burstFromEvent} />
         <Ticker />
-        <SongBreak index={0} onPlay={setNowPlaying} />
+        {Song(0)}
         <MissingClock />
-        <SongBreak index={1} onPlay={setNowPlaying} />
+        {Song(1)}
         <NaaraMachine onBurst={burst} />
-        <SongBreak index={2} onPlay={setNowPlaying} />
+        {Song(2)}
         <ExcuseBingo onBingo={burst} />
-        <SongBreak index={3} onPlay={setNowPlaying} />
+        {Song(3)}
         <Demands />
-        <SongBreak index={4} onPlay={setNowPlaying} />
+        {Song(4)}
         <ComplaintDesk onBurst={burstFromEvent} />
-        <SongBreak index={5} onPlay={setNowPlaying} />
+        {Song(5)}
         <Petition onBurst={burstFromEvent} />
         <Footer />
       </main>
 
-      <NowPlaying index={nowPlaying} />
+      <NowPlaying scrollIndex={songInView} playingIndex={playingSong} />
 
       {/* emoji burst layer */}
       <div aria-hidden className="pointer-events-none fixed inset-0 z-50">
@@ -407,19 +432,29 @@ function Ticker() {
 
 /* ─────────────────────────  ANTAAKSHARI  ───────────────────────── */
 
-function Equalizer({ bars = 4, className = "" }: { bars?: number; className?: string }) {
+function Equalizer({
+  bars = 4,
+  className = "",
+  playing = true,
+}: {
+  bars?: number;
+  className?: string;
+  playing?: boolean;
+}) {
+  // Fixed-height bars scaled with a transform. Animating `height` here made
+  // the surrounding text reflow every frame, which read as a page-wide shake.
   return (
-    <span className={`flex items-end gap-[3px] ${className}`} aria-hidden>
+    <span className={`flex h-4 items-end gap-[3px] ${className}`} aria-hidden>
       {Array.from({ length: bars }).map((_, i) => (
         <motion.span
           key={i}
-          className="w-[3px] rounded-full bg-current"
-          animate={{ height: [5, 14, 7, 16, 5] }}
-          transition={{
-            duration: 1.1 + i * 0.18,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          className="h-4 w-[3px] origin-bottom rounded-full bg-current"
+          animate={playing ? { scaleY: [0.3, 0.9, 0.45, 1, 0.3] } : { scaleY: 0.3 }}
+          transition={
+            playing
+              ? { duration: 1.1 + i * 0.18, repeat: Infinity, ease: "easeInOut" }
+              : { duration: 0.2 }
+          }
         />
       ))}
     </span>
@@ -428,19 +463,39 @@ function Equalizer({ bars = 4, className = "" }: { bars?: number; className?: st
 
 function SongBreak({
   index,
-  onPlay,
+  onInView,
+  isPlaying,
+  onTogglePlay,
 }: {
   index: number;
-  onPlay: (i: number) => void;
+  onInView: (i: number) => void;
+  isPlaying: boolean;
+  onTogglePlay: (i: number) => void;
 }) {
   const song = SONGS[index];
+  const ref = useRef<HTMLElement | null>(null);
+
+  // Tracked with an observer instead of a re-firing whileInView viewport,
+  // which re-ran the entry animation on every scroll pass and looked jittery.
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) onInView(index);
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [index, onInView]);
 
   return (
     <motion.figure
+      ref={ref}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      onViewportEnter={() => onPlay(index)}
-      viewport={{ once: false, amount: 0.6 }}
+      viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="relative mb-10 overflow-hidden rounded-3xl border border-amber-200/25 bg-gradient-to-br from-amber-300/[0.12] via-pink-300/[0.08] to-transparent px-5 py-6 text-center sm:px-8 sm:py-8"
     >
@@ -454,8 +509,8 @@ function SongBreak({
       </motion.span>
 
       <p className="mb-3 flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-amber-200/90">
-        <Equalizer className="text-amber-200" />
-        bajao
+        <Equalizer className="text-amber-200" playing={isPlaying} />
+        {isPlaying ? "baj raha hai" : "bajao"}
       </p>
 
       <blockquote className="mx-auto max-w-lg whitespace-pre-line font-serif text-lg italic leading-relaxed text-white sm:text-2xl">
@@ -466,6 +521,39 @@ function SongBreak({
         — {song.song} · {song.credit}
       </figcaption>
 
+      <motion.button
+        type="button"
+        onClick={() => onTogglePlay(index)}
+        whileTap={{ scale: 0.95 }}
+        className="mt-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-300 to-pink-400 px-5 py-2.5 text-sm font-bold text-[#3b0764] shadow-[0_10px_30px_rgba(251,191,36,0.35)]"
+      >
+        {isPlaying ? <Pause size={15} /> : <Play size={15} fill="currentColor" />}
+        {isPlaying ? "Band karo" : "Gaana bajao"}
+      </motion.button>
+
+      <AnimatePresence initial={false}>
+        {isPlaying && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <div className="mt-4 aspect-video w-full overflow-hidden rounded-2xl border border-white/20 bg-black/40">
+              <iframe
+                className="h-full w-full"
+                src={`https://www.youtube-nocookie.com/embed/${song.videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
+                title={song.song}
+                loading="lazy"
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <p className="mt-4 inline-block rounded-full border border-white/15 bg-black/25 px-4 py-1.5 text-xs text-pink-100 sm:text-sm">
         {song.quip}
       </p>
@@ -473,15 +561,24 @@ function SongBreak({
   );
 }
 
-function NowPlaying({ index }: { index: number | null }) {
+function NowPlaying({
+  scrollIndex,
+  playingIndex,
+}: {
+  scrollIndex: number | null;
+  playingIndex: number | null;
+}) {
+  const index = playingIndex ?? scrollIndex;
   if (index === null) return null;
+
   const song = SONGS[index];
+  const live = playingIndex !== null;
 
   return (
     <div className="pointer-events-none fixed bottom-3 left-3 z-40 sm:bottom-5 sm:left-5">
       <AnimatePresence mode="wait">
         <motion.div
-          key={index}
+          key={`${index}-${live}`}
           initial={{ opacity: 0, y: 16, scale: 0.94 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 10, scale: 0.94 }}
@@ -491,13 +588,13 @@ function NowPlaying({ index }: { index: number | null }) {
           <Music2 size={14} className="shrink-0 text-amber-200" />
           <span className="min-w-0">
             <span className="block text-[9px] font-bold uppercase tracking-widest text-white/50">
-              now playing
+              {live ? "now playing" : "tap ▶ to play"}
             </span>
             <span className="block truncate text-[11px] font-semibold text-white/90 sm:text-xs">
               {song.song}
             </span>
           </span>
-          <Equalizer className="shrink-0 text-pink-300" bars={3} />
+          <Equalizer className="shrink-0 text-pink-300" bars={3} playing={live} />
         </motion.div>
       </AnimatePresence>
     </div>
